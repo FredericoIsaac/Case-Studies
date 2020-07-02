@@ -130,22 +130,24 @@ help(math.sin) - diz nos o que o metodo faz
 
 ## Programa Tartaruga
 
-import turtle
-turtle.forward(x)
-turtle.left(x)
-turtle.right(x)
-turtle.backward(x)
-turtle.position()
-turtle.heading()
-turtle.goto(100,100)
-turtle.setx(200)
-turtle.ycor()
-turtle.xcor()
-turtle.setheading(225)
-turtle.hideturtle()
-turtle.showturtle()
-turtle.penup()
-turtle.pendown()
+    import turtle
+    turtle.forward(x)
+    turtle.left(x)
+    turtle.right(x)
+    turtle.backward(x)
+    turtle.position()
+    turtle.heading()
+    turtle.goto(100,100)
+    turtle.setx(200)
+    turtle.ycor()
+    turtle.xcor()
+    turtle.setheading(225)
+    turtle.hideturtle()
+    turtle.showturtle()
+    turtle.penup()
+    turtle.pendown()
+    turtle.shape("triangle")
+    turtle.exitonclick() - permite controlar o fim da execução do programa através do fecho da janela usada para desenhar
 
 Desenhar polígonos regulares:
 
@@ -160,15 +162,81 @@ Desenhar polígonos regulares:
     ...     turtle.hideturtle()
 
 
-Pagina atual: 50
+#### Contrutor
+
+Permite criar um objeto. Se a operação não tiver argumento cria um objeto particular, se tiver argumento, tenta criar um objeto do tipo a partir do objeto fornecido.
+
+[Source:](https://www.dummies.com/programming/python/how-to-create-a-constructor-in-python/#:~:text=A%20constructor%20is%20a%20special,will%20need%20when%20it%20starts.)
+
+>A constructor is a special kind of method that Python calls when it instantiates an object using the definitions found in your class. Python relies on the constructor to perform tasks such as initializing (assigning values to) any instance variables that the object will need when it starts. Constructors can also verify that there are enough resources for the object and perform any other start-up task you can think of.
+
+>The name of a constructor is always the same, __init__(). The constructor can accept arguments when necessary to create the object. When you create a class without a constructor, Python automatically creates a default constructor for you that doesn’t do anything. Every class must have a constructor, even if it simply relies on the default constructor. 
+
+[Source:](https://www.geeksforgeeks.org/constructors-in-python/)
+
+Syntax of constructor declaration :
+
+    class GeekforGeeks: 
+    
+        # default constructor 
+        def __init__(self): 
+            self.geek = "GeekforGeeks"
+    
+        # a method for printing data members 
+        def print_Geek(self): 
+            print(self.geek) 
+    
+    
+    # creating object of the class 
+    obj = GeekforGeeks() 
+    
+    # calling the instance method using the object obj 
+    obj.print_Geek() 
+_____
+    Output :
+
+    GeekforGeeks
+
+#### Objeto
+ 
+ Tres caracteristica são identidade, valor e tipo
+
+ * Identidade - é o que torna o objeto unico, podendo ser consultado mas não modificado, é uma referência ou um pontador para uma zona da memória na qual se encontra a descrição do objeto
+ * Valor - Traduz o estado do objeto num dado movimento.
+ * Tipo - Determina o conjunto de valroes que o objeto pode assumir e as operações que com ele podemos fazer.
+
+ Em Python o tipo é uma propriedade do objeto, podendo ser consultado mas não alterado, são implementados como classes.
+
+![objetos](/Python\images\objetos.JPG)
+ #### Classes
+
+ É um modelo para descrever o que o conjunto dos objetos da classe partilham, em particular seus atributos, que definem o estado do objeto e as operações que com ele podem ser feitas, definidoras do seu comportamento.
+
+#### Metodo: 
+
+    objeto.método(argumentos)
+
+Quando invocamos um metodo são executadas duas ações: primeiro, vai-se obter o método associado ao objeto através do seu nome; segundo, executa-se o método sobre o objeto, passando-lhe os argumentos, ou seja, fazemos:
+
+    método(objeto, argumentos)
+
+Quando usamos função é so este segundo passo.
+
+#### Functions
+
+Functions that can accept other functions as arguments are also called **higher-order functions**
+
+Pagina atual: 63
 
 
-
+## 03/07/2020
 
 
 
 
 # Teste cohecimentos
+
+## 1º Capitulo
 
 Perguntas dadas no final do capitulo e as suas respotas
 
@@ -230,7 +298,48 @@ R: Primitivas, Composição, Abstração e Padrões.
 
 R: Interactive computer programming environment that takes (read) single user inputs (i.e., single expressions), evaluates (executes/ write) them, and returns the result to the user and then go back to the start to read your next input.
 
+## 2º Capitulo
 
+1. O que entende por construtor?
+
+R: It instantiates an object using the definitions found in your class. Python relies on the constructor to perform tasks such as initializing (assigning values to) any instance variables that the object will need when it starts.
+
+2. Quais são as operações básicas sobre tartarugas?
+
+R: 
+
+    turtle.forward(x)
+    turtle.left(x)
+    turtle.right(x)
+    turtle.backward(x)
+
+3. De que modo se definem novas formas de tartaruga?
+
+R: turtle.shape("triangle")
+
+4. Quais são as operações básicas sobre caneta?
+
+R:
+* turtle.penup()
+* turtle.pendown()
+
+5. O que distingue uma função de um método?
+
+R: Num método primeiro, vai-se obter o método associado ao objeto através do seu nome; segundo, executa-se o método sobre o objeto, passando-lhe os argumentos. Numa função so se faz o segundo passo.
+
+6. Como podemos controlar a escala do nosso desenho?
+
+R: setworldcoordinates ( canto inferior esquerdo, canto inferior esquerdo, canto superior direiro, canto superior direiro)
+
+    setworldcoordinates(-math.pi, -2 , math.pi, 2)
+
+7. Qual é a finalidade de exitonclick()?
+
+R: Permite controlar o fim da execução do programa através do fecho da janela usada para desenhar
+
+8. Porque podemos usar funções como argumentos de funções e que consequências existem desse facto?
+
+R: Podemos usar porque em python tudo são objetos, inclusive funções. Functions that can accept other functions as arguments are also called higher-order functions
 
 
 
