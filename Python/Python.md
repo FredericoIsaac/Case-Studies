@@ -226,12 +226,548 @@ Quando usamos função é so este segundo passo.
 
 Functions that can accept other functions as arguments are also called **higher-order functions**
 
-Pagina atual: 63
+#### Tipos de Objetos
 
+* Inteiros - 733, -15, 0
+* Vírgula Flutuante - 2.46, 3.14e-20, 6e100, 4.0e+120
+* Números complexos - 4 + 5j, 4.0 + 5.0j, 6J
+
+Não podemos converter um numero complexo num real.
+
+##### Booleanos
+
+* Verdadeiro (True) - é representado por 1
+* Falso (False) - é representado por 0
+
+#### Interpretador
+
+Quando se recorre a um interpretador, este funciona com base num ciclo normalmente designado por **lê - avalia - escreve**: uma expressão é lida, o valor que lhe está associado é calculado e o resultado desse calculo é ecoado. Na aparência, é um ciclo com três passos. No entanto, são na realidade, cinco passos, pois, a seguir á leitura, há uma conversão para um formato interno e, antes da impressão, há a escolha do formato de saida.
+
+#### Bitwise Operation - [Source](https://en.wikipedia.org/wiki/Bitwise_operation#:~:text=In%20computer%20programming%2C%20a%20bitwise,values%20for%20comparisons%20and%20calculations.)
+
+|  Symbol | Operator  |
+|---|---|
+| &  | bitwise AND  |
+|  \| | bitwise inclusive OR  |
+| ^	  | bitwise XOR (exclusive OR)  |
+| <<  | left shift  |
+| >>  | right shift  |
+| ~  | 	bitwise NOT (one's complement) (unary)  |  
+
+In computer programming, a bitwise operation operates on one or more bit patterns or binary numerals at the level of their individual bits. It is a fast and simple action, directly supported by the processor, and is used to manipulate values for comparisons and calculations.
+
+##### NOT ( ~ )
+
+The bitwise NOT, or complement, is a unary operation that performs logical negation on each bit, forming the ones' complement of the given binary value. Bits that are 0 become 1, and those that are 1 become 0. For example:
+
+    NOT 0111  (decimal 7)  = 1000  (decimal 8)
+
+The bitwise complement is equal to the two's complement of the value minus one. If two's complement arithmetic is used, then NOT x = -x − 1.
+
+A simple but illustrative example use is to invert a grayscale image where each pixel is stored as an unsigned integer.
+
+##### AND ( & )
+
+A bitwise AND is a binary operation that takes two equal-length binary representations and performs the logical AND operation on each pair of the corresponding bits, which is equivalent to multiplying them. Thus, if both bits in the compared position are 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0).
+
+        0101 (decimal 5)  AND 0011 (decimal 3)  = 0001 (decimal 1)
+
+Because of this property, it becomes easy to check the parity of a binary number by checking the value of the lowest valued bit. Using the example above:
+
+        0110 (decimal 6)  AND 0001 (decimal 1) = 0000 (decimal 0)
+
+Because 6 AND 1 is zero, 6 is divisible by two and therefore even.
+
+##### OR ( | )
+
+A bitwise OR is a binary operation that takes two bit patterns of equal length and performs the logical inclusive OR operation on each pair of corresponding bits. The result in each position is 0 if both bits are 0, while otherwise the result is 1. For example:
+
+    0101 (decimal 5) OR 0011 (decimal 3) = 0111 (decimal 7)
+
+##### XOR ( ^ )
+
+A bitwise XOR is a binary operation that takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only one of the bits is 1, but will be 0 if both are 0 or both are 1.
+
+    0101 (decimal 5) XOR 0011 (decimal 3) = 0110 (decimal 6)
+
+#### Arithmetic Shift ( << >>)
+
+In an arithmetic shift, the bits that are shifted out of either end are discarded. In a left arithmetic shift, zeros are shifted in on the right; in a right arithmetic shift, the sign bit (the MSB in two's complement) is shifted in on the left, thus preserving the sign of the operand.
+
+This example uses an 8-bit register:
+
+    00010111 (decimal +23) LEFT-SHIFT =  00101110 (decimal +46)
+    10010111 (decimal −23) RIGHT-SHIFT =  11001011 (decimal −11)
+    
+In the first case, the leftmost digit was shifted past the end of the register, and a new 0 was shifted into the rightmost position. In the second case, the rightmost 1 was shifted out (perhaps into the carry flag), and a new 1 was copied into the leftmost position, preserving the sign of the number. Multiple shifts are sometimes shortened to a single shift by some number of digits. For example:
+
+    00010111 (decimal +23) LEFT-SHIFT-BY-TWO = 01011100 (decimal +92)
+
+Até pagina: 76
 
 ## 03/07/2020
 
+Pagina atual: 77
 
+## Cadeia de Caracteres
+
+| Escape  | Interpretação  |
+|---|---|
+| \\\  | Armazena uma barra inclinada  |
+|  \b |  Espaçamento atrás |
+|  \n |  Muda de Linha |
+|  \t |  Tabulação horizontal | 
+|  \v |  Tabulação vertical | 
+
+##### Operadores
+
+Concatenação de cadeias de caracteres
+
+    "GAATTC" + "GGATCC" = GAATTCGGATCC
+
+Cópias de superficie de uma cadeia
+
+    "GAATTC" * 2 = GAATTCGAATTC
+
+#### Indexação
+
+![index](/Python\images\index.jpg)
+
+##### Fatiamento [inf : sup] e [inf : sup: step]
+
+    >>> cadeia = "Homem Aranha"
+    >>> cadeia[1:4]
+    'ome'
+    >>> cadeia[-6:-2]
+    'Aran'
+    >>> cadeia[:5]
+    'Homem'
+    >>> cadeia[6:]
+    'Aranha'
+    >>> cadeia[:]
+    'Homem Aranha'
+    >>> cadeia[::2]
+    'HmmAah'
+    >>> cadeia[1:7:2]
+    'oe '
+
+A posição **inf** inclusive e a posição **sup** exclusive.
+
+Caso o indice inferior seja maior do que indice superior, o resultado será uma cadeia vazia
+
+    >>> cadeia[3:2]
+    ''
+
+Podemos nao colocar os indices, se nao pusermos o inferior, significa desde o inicio; se nao pusermos o superior, significa até ao fim.
+
+Para obter uma cadeia inversa de uma dada cadeia de caracteres:
+
+    >>> cadeia[::-1]
+    'ahnarA memoH'
+
+##### Print
+
+    <frase_com_formato> % <valores>
+    >>> mensagem = "A soma de %d com %d da %d" % ( 1 , 3, 1+3)
+    >>> print(mensagem)
+    A soma de 1 com 3 da 4
+
+Ao usar "%.0f" vamos imprimir um float com duas casas decimais
+
+#### Operações
+
+| Literal  | Interpretação  |
+|---|---|
+| cad in s  | Determina se cad é subcadeia de s  |
+| max(cad)  | Qual o maior elemento da cadeia  |
+| min(cad)  | Qual o menor elemento da cadeia  |
+| s.index(cad)  | O indice da primeira ocorrência de cad em s  |
+| s.count(cad)  | O número de ocorrências de cad em s  |
+
+    >>> cadeia = "Homem Aranha"
+    >>> "ma" in cadeia
+    False
+    >>> max(cadeia)
+    'r'
+    >>> min(cadeia)
+    ' '
+    >>> cadeia.index("a")
+    8
+    >>> cadeia.count("a")
+    2
+
+#### Metodos Especificos
+
+| Método   | Significado  | 
+|---|---|
+| s.find(cad)  | O indice da primeira ocorrrencia ou -1  |
+| s.isalpha()  | Verdadeiro se só letras  |
+| s.isdigit()  | Verdadeiro se só digitos  |
+| s.center(comprimento)  | Center numa cadeia de comprimento  |
+| s.lower()  | Converte para letras minusculas  |
+| s.upper()  | Converte para letras maiusculas  |
+| s.strip()  | Retira brancos á esquerda e á direita  |
+| s.replace(velho,novo)  | Substitui ocorrências de velho por novo  |
+| s.endswith(cad)  | Verifica se s termina em cad  |
+
+    >>> cadeia = "TACGAUGGGTCAAUGTCGAT"
+    >>> cadeia.find("AUG")
+    4
+    >>> cadeia.find("AUG",6)
+    12
+    >>> cadeia.find("AUT",6)
+    -1
+    >>> cadeia.isalpha()
+    True
+    >>> cadeia.lower()
+    'tacgaugggtcaaugtcgat'
+    >>> cadeia.replace("T","U")
+    'UACGAUGGGUCAAUGUCGAU'
+    >>> nome = "Ernesto J. F. Costa"
+    >>> nome.center(50)
+    '               Ernesto J. F. Costa                '
+    >>> titulo = nome.center(30)
+    >>> titulo
+    '     Ernesto J. F. Costa      '
+    >>> titulo.strip()
+    'Ernesto J. F. Costa'
+    >>> titulo.upper()
+    '     ERNESTO J. F. COSTA      '
+    >>> "1234".isdigit()
+    True
+    >>> "12.34".isdigit()
+    False
+
+## Range
+
+Range é um iterator que devolve os elementos de uma sequencia á medida que eles são necessarios, evitando, deste modo, que estejam todos em memoria.
+
+    for i in range(4)
+    for i in range(1, 4)
+    for i in range(1, 4, 2)
+
+## Tuplos
+
+| Literal  | Interpretação  |
+|---|---|
+| +  | Concatenação de cadeias de caracteres  |
+| *  | Cópias de superficie de uma cadeia  |
+| len  | Comprimento de um cadeia  |
+| in  | Determina se uma cadeia é subcadeia de outra  |
+| max  | Qual o maior elemento da cadeia  |
+| min  | Qual o menor elemento da cadeia  |
+| index  | O indice da primeira ocorrência  |
+| count  | O número de ocorência  |
+| [i : j : k]  | Fatiamento  |
+
+    >>> t_1 = (1,2,3)
+    >>> t_2 = (4,5,6,7,8,9)
+    >>> t_1 + t_2
+    (1, 2, 3, 4, 5, 6, 7, 8, 9)
+    >>> t_1 * 2
+    (1, 2, 3, 1, 2, 3)
+    >>> len(t_2)
+    6
+    >>> 4 in t_1
+    False
+    >>> max(t_1)
+    3
+    >>> min(t_2)
+    4
+    >>> t_2[2:5]
+    (6, 7, 8)
+    >>> t_1.count(3)
+    1
+    >>> t_2.index(5)
+    1
+    >>> t_1[-1]
+    3
+    >>> t_2[0:6:2]
+    (4, 6, 8)
+
+##### Imutabilidade
+
+Alterando um objeto alteramos indiretamente outro se ambos partilharem o que foi alterado, reside no facto de os tuplos serem objetos **imutaveis**: não é possivel alterar o seu valor sem alterar a sua identidade, criando, assim um novo objeto
+
+Não é possivel alterar cadeias de caracteres:
+
+    >>> cadeia = "Homem Aranha"
+    >>> cadeia[6] = "I"
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    TypeError: 'str' object does not support item assignment
+
+Mas podemos contornar:
+
+    >>> cadeia = cadeia[:6] + "I" + cadeia[7:]
+    >>> cadeia
+    'Homem Iranha'
+
+### Empacotamento
+
+É possivel referirmo-nos a tuplos sem usar a sua marca sintática, os parenteses.
+
+    >>> t_3 = 1,2,3,4
+    >>> t_3
+    (1, 2, 3, 4)
+
+Da para fazer o inverso:
+
+    >>> conta_1 = ("Ernesto Costa", 59, "Coimbra", 123.45)
+    >>> nome, idade, morada, saldo = conta_1
+    >>> nome
+    'Ernesto Costa'
+
+### Embricamento
+
+    >>> t = ("Coimbra", (40.15, 8.27))
+    >>> t[1][0]
+    40.15
+
+### Collections
+
+    1 >>> import collections
+    2 >>> Cidades = collections.namedtuple("Cidades", "Nomes lat long")
+    3 >>> cid_1 = Cidades(Nomes="Coimbra", lat=40.15, long=8.27)
+    4 >>> cid_1.Nomes
+    5 'Coimbra'
+    6 >>> cid_2= Cidades("Lisboa", 38.42, 9.10)
+    7 >>> cid_2[1]
+    8 38.42
+
+A linha 2 mostra a criação do construtor do tipo, sendo que, neste caso, o nome do construtor é o mesmo do tipo. Este modo de proceder, não sendo obrigatorio representa boa pratica.
+
+Fica tambem claro que podemos aceder aos atributos pelo nome ou da forma usual, e que na criação dos objetos não é obrigatorio usar o nome do atributo.
+
+# Algoritmo - descobre o maior valor e return
+
+[Code - maiorValor.py](Python\exercicios\maiorValor.py)
+
+Até pagina: 115
+
+## 04/07/2020
+
+Pagina atual: 115
+
+Observações: Tive de ressaca no sabado dai não ter feito nenhum estudo
+
+## 05/07/2020
+
+Pagina atual: 115
+
+## Generalidades
+
+Um programa é formado por uma sequencia de comandos. Esses comandos dividem-se em **expressôes, instruções** ou ainda **definições**.
+
+De um modo simples podemos dizer que as instruções fazem coisas. Quando executamos um programa, algumas instruções alteram ou criam objetos e associam esses objetos a nomes, enquanto outras apenas servem para definir a proxima instrução a ser executada.
+
+Ás primeiras chamamos instruções destrutivas e ás segundas instruções de controlo.
+
+No conceito de instruções destrutivas, que alteram as caracteristicas dos objetos presentes no programa. Subdividem-se em três categorias:
+* Atribuição;
+* Leitura;
+* Escrita.
+
+A construção dos nomes em Python obedece a regras: um nome válido tem de começar por uma letra ou pleo caracter _, podendo seguir-se depois letras, digitos e o caracter _, por esta ordem em qualquer número.
+
+Palavras reservadas:
+
+* and 
+* continue
+* execept
+* global 
+* lambda
+* pass
+* while 
+* as
+* def
+* False
+* if
+* None
+* raise
+* width
+* ...
+
+Quando os nomes são muitos extensos, é normal tornar a sua leitura mais simples. Por exemplo, usar ***peso_total*** em vez de ***pesototal.***
+
+#### Atribuição
+
+Uma atribuição nao é mais do que a associação de um nome a um objeto. Os nomes são criados no momento da primeira atribuição (do nome), passando a fazer parte do espaço de nomes.
+
+A associação de um nome a um objeto pode ser feita de modo indireto:
+
+    >>> x = 5.4
+    >>> y = 3
+    >>> z = x + y
+    >>> z
+    8.4
+
+#### Atribuição Implicita
+
+Existem algumas atribuições implicitas. Por exemplo, quando importamos um módulo ou quando definimos uma função .
+
+#### Atribuição Aumentada
+
+    >>> x = 4
+    >>> x += 1
+    >>> y = 10
+    >>> y **=2
+    >>> x
+    5
+    >>> y
+    100
+
+#### Outras formas de atribuição
+
+Python permite outros modos de efetuar atribuições: em cadeia ou múltiplas
+
+    >>> a = b =3
+    >>> a
+    3
+    >>> b
+    3
+
+Aqui temos que o objeto 3 tem agora dois nomes associados.
+
+    >>> x, y = 5, 7
+    >>> x
+    5
+    >>> y
+    7
+
+Trocar o valor de duas variaveis!!
+
+    >>> x, y = y, x
+    >>> x
+    7
+    >>> y
+    5
+
+Esta situação pode ser ultrapassada se o nome estiver prefixado com um asterisco.
+
+    >>> x, *y = (5,7,9)
+    >>> x
+    5
+    >>> y
+    [7, 9]
+    >>> *x,y = (5,7,9)
+    >>> x
+    [5, 7]
+    >>> y
+    9
+    >>> x,*y,z = (3,5,7,9)
+    >>> x
+    3
+    >>> y
+    [5, 7]
+    >>> z
+    9
+    >>> x,*y,z = (5,7)
+    >>> x
+    5
+    >>> y
+    []
+    >>> z
+    7
+
+Os valores prefixados com asterisco ficam associados a um objeto do tipo lista.
+
+#### Leitura
+
+Já sabemos que podemos usar o **construtor** dos diferentes tipos de dados para forçar um objeto a ser convertido, quando tal é possivel, para outro tipo de objeto.
+
+    int()
+    str()
+    float()
+
+Podemos generalizar esta abordagem usando, não o construtor, mas a função **eval**. A função eval tem como argumento uma cadeia de caracteres que é interpretada como sendo uma expressão.
+
+    >>> idade = eval(input("A sua idade por favor: "))
+    A sua idade por favor: 27
+    >>> idade
+    27
+
+#### Escrita
+
+    >>> print(a, ' + ' ,b, ' = ', a+b, sep='--')
+    3-- + --3-- = --6
+
+    >>> a = 2
+    >>> print(a, end="")
+    2>>> print(a, end="**")
+    2**>>> 
+
+Por defeito, é usado o caráter de mudança de linha **\n**. Temos assim, uma sintaxe simples para a função **print**.
+
+    print([expressão,...], sep=" ", end = "\n", file=sys.sdout)
+
+Como se pode concluir, também podemos determinar onde vai ser escrito o resultado indicando o canal de saída, que, por defeito, é o monitor (sys.sdout)
+
+#### Metodo de Formatação 
+
+Baseia-se no uso do metodo **format**, que se aplica a um **modelo** de cadeia de carateres que é instanciada por recurso a argumentos por posição ou por nome. 
+
+    >>> modelo_1 = "{0}, {1} e {2}"
+    >>> texto_1 = modelo_1.format("cama", "mesa", "roupa lavada")
+    >>> print(texto_1)
+    cama, mesa e roupa lavada
+    >>> modelo_2 = "{dorme}, {come} e {veste}"
+    >>> testo_21= modelo_2.format(come="mesa", veste="roupa lavada", dorme="cama")
+    >>> print(testo_21)
+    cama, mesa e roupa lavada
+
+## Intruções de controlo
+
+* Instruções de controlo:
+    * Sequências
+    * Condicionais
+    * Ciclos
+
+Operadores Relacionais:
+
+* and
+* or
+* !=
+* not
+* in - permite responder se um elemento pertence a uma sequência
+* is - permite saber se dois nomes estão associados ao mesmo objeto, isto é, se têm a mesma identidade (adress in memory)
+
+##### Representação de Falso
+
+| Objeto  | Descrição  |
+|---|---|
+| None  | Nada  |
+| 0  | Zero  |
+| "  | Cadeia de caracteres vazia  |
+| ()  | Tuplo vazio  |
+| []  | Lista vazia  |
+| {}  | Dicionario vazio  |
+
+### Condicionais
+
+* Simples (uma via)
+
+    if ():
+
+* Normal (duas vias)
+
+    if():
+    else:
+
+* Geral (várias vias)
+    if():
+    elif():
+    else:
+
+### Loops
+
+Propriedades que são verdadeiras á entrada do ciclo e no final de cada exceução do cilco. São designadas por **invariantes do ciclo.**
+
+Até pagina: 155
+
+## 06/07/2020
+
+Pagina atual: 155
 
 
 # Teste cohecimentos
@@ -307,7 +843,6 @@ R: It instantiates an object using the definitions found in your class. Python r
 2. Quais são as operações básicas sobre tartarugas?
 
 R: 
-
     turtle.forward(x)
     turtle.left(x)
     turtle.right(x)
@@ -341,8 +876,92 @@ R: Permite controlar o fim da execução do programa através do fecho da janela
 
 R: Podemos usar porque em python tudo são objetos, inclusive funções. Functions that can accept other functions as arguments are also called higher-order functions
 
+## 3º Capitulo
 
+1. O que entende por programação descendente?
 
+R: Também chamada de construção do topo para a base: decompôe-se um dado problema em subproblemas, cada um dos quais é resolvido usando a mesma abordagem reducionista, até chegarmos a problemas que se podem resolver de modo direto com as construções da linguagem.
+
+2. O que são objetos imutáveis?
+
+R: São objetos em que nao podemos alterar o valor deles. No momento em que são declarados os valores nao podem voltar a ser alterados.
+
+3. Qual é a diferença entre a função range com um argumento, dois argumentos ou três argumentos?
+
+R: A função range só com um elemento, vai de ate esse elemento (< elemento), com dois argumentos vai do primeiro parametro ate ao segundo parametro (1ºparametro >= && 2ºparametro < ) e com terceiro parametro é igual mas o terceiro parametro é de quanto em quanto vai ser passado (3º parametro = 2, entao vai ser de 2 em 2)
+
+4. O que é uma variável com o papel de contador?
+
+R: Uma variavel com papel de contador serve para conseguirmos manipular as vezes que percorre num loop, podemos começar com o valor que queremos e criar uma condição que faz com que saia do loop graças ao contador
+
+5. O que é uma variavel com o papel de acumulador?
+
+R: Serve para acumular informação dentro de um loop, por exemplo uma variavel do tipo de string é inicializada sem nada e ao longo do loop vai sendo preenchida
+
+6. Como se pode modificar uma cadeia de carateres obtendo uma nova?
+
+R: Uma cadeia de caracteres é imutavel, dai a maneira de alterar é criar um novo valor a variavel, como se pode ver na linha 500.
+
+7. O que significa fatiamento?
+
+R: Fatiamento é dado pelo proprio nome, significa conseguir fatiar a cadeia de caracteres em varias fatias, de acordo como queremos, para podermos manipular os dados como queremos.
+
+8. Qual é o construtor do tipo cadeia de carateres?
+
+R: O construtor é **str** que transforma algo numa cadeia de caracteres.
+
+9. Que diferenças existem entre os métodos find e index?
+
+R: O método find tenta encontrar o que colocamos, caso nao encontre devolve -1, caso encontre apresenta o index onde começa a sequencia de caracteres que queremos. O metodo index caso nao exista na cadeia apresenta um erro. 
+
+## 4º Capitulo
+
+1. Qual o siginificado de estado? E de computação?
+
+R: Num dado instante, os objetos têm um determinado conjunto de caracteristicas (valor, tipo, identidade) e o programa encontra-se a executar uma dada instrução. Afirmamos que o programa se encontra num dado **estado**. A sequência de estados por que vai passando o programa ao longo do tempo constitui uma **computação**. 
+
+2. Que palavras reservadas existem em Python? Qual é a sua função e importância?
+
+R: Algumas delas são:
+
+* False
+* True
+* def
+
+A sua importancia é dos metodos que elas proprias "chamam" ao serem implementadas no codigo
+
+3. O que significa dizer que Python é uma linguagem não tipada e que o tipo associado a um objeto é determinado dinamicamente?
+
+R: Uma linguagem não tipada significa que nao temos explicitamente indicar que tipo é que se refere o valor (int, float, string, char, ...) e que o  objeto pode alterar de tipo sem que tenha que ser transformado.
+
+4. Que consequencias práticas existem de a tipagem ser dinâmica?
+
+R: Ao longo do programa podemos alterar a variavel sem o problema de alterar o tipo, dando mais flexibilidade ao programador mas tambem mais azo a erro.
+
+5. Como define o conceito de atribuição?
+
+R: Uma atribuição é uma associação de um nome a um objeto
+
+        dna = "GAATC
+
+6. Que formas de atribuição conhece?
+
+R: 
+* Atribuição Implicita - quando importamos um mõdulo onde ja estão presentes atribuições
+* Atribuição Aumentada - os objetos aparecem á esquerda e á direita do sinal de atribuição (x += 1)
+* Atribuição em cadeia ou multiplas (a = b = 3 || x,y = 5, 7)
+
+7. De que maneiras se pode introduzir dados num programa? E de que maneira se pode retirar resultados?
+
+R: Atravez da função input() pode-se introduzir dados e através do return pode se retirar resultados
+
+8. Como funciona a instrução input? Funciona como qualquer tipo de objeto?
+
+R: A intrução input transforma qualquer tipo de input numa cadeia de caracteres.
+
+9. Qual é a diferença entre formar a saída por recurso a uma expressão ou ao método **format**?
+
+R: Ao formar uma saida por recurso a uma expressao teremos que introduzir o texto e as os valores separados por "" e virgulas, com o modo format introduzimos o modelo que queremos introduzir as variaveis entre {} e dando index podemos introduzir varios valores. 
 
 # Python Sintax
 
@@ -377,3 +996,32 @@ random.randint(0,100) - numero aleatorio de 0 a 100 (import random)
 
 1.0 // 2 - ao usar // dois seguidos vai fazer a divisão e como numero inteiro
 
+None - ausência de valor
+
+pow(x, y) - devolve a potencia do primeiro elevada ao segundo
+
+not x - A negação logica em python
+
+!= - Desigual (valor)
+
+is - Igual identidade (adress memoria)
+
+is not - Desigual identidade (adress memoria)
+
+ord("A") = 65 (ASCII)
+
+chr(65) = "A" (ASCII)
+
+len("A") = 1
+
+str(1) = "1"
+
+max() with iterable arguments
+
+    max(iterable, *iterables, key, default)
+
+    max() Parameters:
+    iterable - an iterable such as list, tuple, set, dictionary, etc.
+    *iterables (optional) - any number of iterables; can be more than one
+    key (optional) - key function where the iterables are passed and comparison is performed based on its return value
+    default (optional) - default value if the given iterable is empty
