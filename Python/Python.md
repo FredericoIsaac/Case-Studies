@@ -769,6 +769,228 @@ Até pagina: 155
 
 Pagina atual: 155
 
+### Instruções de Controlo
+
+Existem muitas situações em programação em que se justifica interromper um ciclo a meio da sua execução. Essa interrupção pode ser definitiva, isto é, o ciclo é abandonado, ou então parcial, levando apenas ao regresso ao inicio do ciclo.
+
+#### Break
+
+Quando não temos mais nada a fazer e queremos abandonar o teste. A instrução **break** permite-nos realizar esse objetivo de modo elegante.
+
+    >>> def factor_max(y):
+    ...     x = y // 2
+    ...     while x > 1:
+    ...         if y % x == 0:
+    ...             print("O maior factor de %d é %d" % (y,x))
+    ...             break
+    ...         x = x - 1
+
+
+#### Continue
+
+Há situações em que não queremos interromper o ciclo, mas apenas retomá-lo a partir do inicio. Um exemplo simples é quando queremos filtrar certos casos em que nada acontece de outros em que é preciso fazer algo.
+
+Há um aspecto importante sobre a instrução **continue** que deve ser sublinhada, pois é, muitas vezes mal entendido. A instrução faz voltar para o inicio do ciclo, obrigando ao teste da condição de saida antes de retomar a execução do ciclo, o que só acontece se o teste for verdadeiro.
+
+#### Else
+
+Os ciclos **while** e **for** podem ser enriquecidos através da utilização de uma claúsula **else** a seguir ao ciclo. Associadas a essa cláusula estão instruções que serão executadas caso o ciclo **não** tenha sido interrompido por meio de um **break**.
+
+    >>> def factor_max(y):
+    ...     x = y // 2
+    ...     while x > 1:
+    ...         if y % x == 0:
+    ...             print("O maior factor de %d é %d" % (y,x))
+    ...             break
+    ...         x = x - 1
+    ...     else:
+    ...     print(y, "é um número primo")
+
+#### Pass
+
+Uma instrução que não faz nada.
+
+* No desenvolvimento de programas. Deste modo, podemos testar partes do programa, deixando para mais tarde completar o que está em desenvolvimento. Consegue-se também isolar melhor eventuais erros no código;
+* Quando somos obrigados, por razões **sintáticas**, a colocar uma instrução numa zona do código.
+* No tratamento de exceções, assunto que será tratado na próxima secção.
+
+#### Exceções
+
+O proprio utilizador pode incorporar no seu programa código que o ajude a controlar possíveis erros. Esse código baseia-se na ideia de **exceção**.
+
+Um caso simples em que isolamos a situação de uma divisão por zero.
+
+    >>> def try_1(x):
+    ...     try:
+    ...         y= eval(input("\nDenominador: "))
+    ...         print( x / y )
+    ...     except ZeroDivisionError:
+    ...         print("\nCuidado: o denominador não pode ser zero!")
+
+Um exemplo clássico do uso de excecções envolve a abertura de um ficheiro, como se ilustra a seguir:
+
+    >>> def try_4(x):
+    ...     try:
+    ...         fich = input("Nome do ficheiro: ")
+    ...         f_in = open(fich, "r")
+    ...         break
+    ...     except IOError:
+    ...         print("O ficheiro %s não existe. Tente de novo." % fich)
+
+Neste caso, estamos a pedir o nome de um ficheiro até o mesmo ser válido, altura em que se abandona o ciclo **while**.
+
+Associado a um **try** pode existir mais do que uma cláusula **except**, embora só uma seja ativada (a que corresponder à exceção levantada)
+
+    >>> import sys
+    >>>
+    >>> try:
+    ...     f= open("myfile.txt")
+    ...     s = f.readline()
+    ...     i = int(s.strip())
+    ... except IOError as erro:
+    ...     print("I/O error: %s" % erro)
+    ... except ValueError:
+    ...     print("Os dados não puderam ser convertidos para inteiro.")
+    ... except:
+    ...     print("Erro inesperado:", sys.exc_info()[0])
+    ...     raise
+
+No ultimo **except** não existe nenhuma exceção definida associada e é levantada uma geral (**raise**). O uso de sys.exc_info()[0] destina-se a obter informação que o sistema consegue dar sobre o erro.
+
+Para concluir, importa referir que pode também existir uma cláusula opcional, denominada **finally**, no fim da exceção, que será **sempre** executada independentemente do resultado das operações do **try - except**. Normalmente, é usado para atividades de limpeza, como fechar um ficheiro com segurança.
+
+    >>> def divide_1(x,y):
+    ...     try:
+    ...        result = x/y
+    ...     except ZeroDivisionError:
+    ...         print("divisão por zero!")
+    ...     else:
+    ...         print("o resultado é", reuslt)
+    ...     finally:
+    ...         print("a executar a cláusula finally")
+
+#### Asserções
+
+Acontece, com alguma frequência, queremos interromper um programa se uma dada condição não se verificar (assert).
+
+    >>> def exe_ass(n):
+    ...     assert 7 < n < 77, "valores fora dos limites"
+    ...     print(n)
+    ... # -- resultado da chamada com n = 100
+    AssertionError: Valores fora dos limites
+
+[Source](https://www.programiz.com/python-programming/assert-statement)
+
+Assertions are simply boolean expressions that checks if the conditions return true or not. If it is true, the program does nothing and move to the next line of code. However, if it's false, the program stops and throws an error.
+
+It is also a debugging tool as it brings the program on halt as soon as any error is occurred and shows on which point of the program error has occurred.
+
+    def avg(marks):
+        assert len(marks) != 0,"List is empty."
+        return sum(marks)/len(marks)
+
+    mark2 = [55,88,78,90,79]
+    print("Average of mark2:",avg(mark2))
+
+    mark1 = []
+    print("Average of mark1:",avg(mark1))
+
+When we run the above program, the output will be:
+
+    Average of mark2: 78.0
+    AssertionError: List is empty.
+
+## Listas
+
+As listas são objetos como tudo em python, logo têm identidade, valor e tipo. Os elementos das listas são separador por vírgulas. A marca sintática das listas são os parênteses retos. São mutaveis e heterogenias
+
+    baleias = [5,4,3,4,2,6,8,4,6]
+
+| Nome  | Operador  | Significado  |
+|---|---|---|
+| Indexação  | [n]  | Acede  |
+| Concatenação  | L1 + L2  | Junta   |
+| Repetição  | L * n  | Replica  |
+| Pertença  | in, not in  | testa  |
+| Comprimento  | len  | Quantifica  |
+| Fatiamento  | [ : : ]  | Parte  |
+
+    >>> [1,2,3] [1]
+    2
+    >>> [1,2,3] + [4,5,6]
+    [1, 2, 3, 4, 5, 6]
+    >>> ["Ai!"]*4
+    ['Ai!', 'Ai!', 'Ai!', 'Ai!']
+    >>> len([1,2,3])
+    3
+    >>> 2 in [1,2,3]
+    True
+    >>> lista = [1,2,3,4,5,6]
+    >>> lista[1:4]
+    [2, 3, 4]
+
+O **contrutor** é list()
+
+Os nomes são **referências** para o mesmo objeto. Assim, naturalmente, ao usar um deles para mudar o valor do objeto, o acesso pelo outro nome também encontra o objeto alterado. Este acontecimento pode ter efeitos não desejados. Se nãoo quisermos que este efeito lateral aconteça, uma solução é usar uma **cópia**.
+
+    >>> vogais  = ["A", "E", "I", "O", "U"]
+    >>> id(vogais)
+    2791287099208
+    >>> copia = vogais[:]
+    >>> copia
+    ['A', 'E', 'I', 'O', 'U']
+    >>> id(copia)
+    2791287111048
+
+Esta solução não é perfeita, pois apenas as referências de primeiro nivel são alteradas. Assim, se o objeto tiver elementos que sejam listas e alterarmos os elementos destas listas, o problema acontece de novo.
+
+    >>> vogais = ["A", "E", ["I","O"],"U","Z"]
+    >>> copia = vogais[:]
+    >>> id(vogais)
+    2791287120840
+    >>> id(copia)
+    2791287204424
+    >>> copia[2][1] = "AI!"
+    >>> copia
+    ['A', 'E', ['I', 'AI!'], 'U', 'Z']
+    >>> vogais
+    ['A', 'E', ['I', 'AI!'], 'U', 'Z']
+
+Para termos a certeza de que não temos nenhuma surpresa, devemos fazer uma **cópia profunda** utilizando o método **deepcopy** do módulo **copy**.
+
+    >>> import copy
+    >>> vogais = ["A", "E", ["I","O"],"U","Z"]
+    >>> copia= copy.deepcopy(vogais)
+    >>> id(vogais)
+    2791286880456
+    >>> id(copia)
+    2791286951304
+    >>> copia[2][1] = "AI!"
+    >>> copia
+    ['A', 'E', ['I', 'AI!'], 'U', 'Z']
+    >>> vogais
+    ['A', 'E', ['I', 'O'], 'U', 'Z']
+
+
+| Método  | Operação  |
+|---|---|
+| list.index(obj, i=0, j = len(list))  | Menor indice da ocorrência do objeto  |
+| list.count(obj)  | Conta o número de vezes que obj ocorre em list  |
+| list.append(obj)  | Adiciona o objeto no fim da lista  |
+| list.extend(seq)  | Junta seq á list  |
+| list.insert(index, obj)  | Insere o objeto na posição dada pelo indice  |
+| list.remove(obj)  | Retira o objeto da lista  |
+| list.pop(index)  | Retira o objeto da lista na posição dada pelo indice  |
+| list.reverse()  | Inverte a lista ***in situ***  |
+| list.sort(key, reverse)  | Ordena ***in situ*** a lista ***list***  |
+
+O método **append** acrescenta um elemento no final da lista e devolve o objeto **None**
+
+Até pagina: 190
+
+## 07/07/2020
+
+Pagina atual: 190
 
 # Teste cohecimentos
 
@@ -962,6 +1184,52 @@ R: A intrução input transforma qualquer tipo de input numa cadeia de caractere
 9. Qual é a diferença entre formar a saída por recurso a uma expressão ou ao método **format**?
 
 R: Ao formar uma saida por recurso a uma expressao teremos que introduzir o texto e as os valores separados por "" e virgulas, com o modo format introduzimos o modelo que queremos introduzir as variaveis entre {} e dando index podemos introduzir varios valores. 
+
+## 4º Capitulo
+
+1. O que entende por bloco e como é que este se relaciona com a indentação do código?
+
+R: Um bloco de codigo é um grupo de instruções que podem ser executadas. Para significar que um conjunto de instruções pertence ao mesmo bloco, usa-se o mecanismo de **indentação**
+
+2. De que maneira pode representar os valores booleanos **True** e **False**?
+
+R: 
+* True:
+    * 1
+* False:
+    * 0
+    * ""
+    * ()
+    * None
+
+3. Que tipos de instruções condicionais existem e como se distinguem?
+
+R: 
+* Condições Simples (uma via)
+* Condições Normais (duas vias, sim ou nao)
+* Geral (várias vias, complexidade de sim ou nao)
+
+4. Qual é a diferença fundamental entre um ciclo **for** e um ciclo **while**?
+
+R: Um ciclo for é colocado num sentido de sequência que queremos percorrer, ja sabemos o que queremos percorrer e até onde. O ciclo while é sempre verificado uma condição para repetir, se a condição for satisfeita sai do ciclo.
+
+5. De que modo pode percorrer um ciclo?
+
+R: Pelo seu **conteúdo** que percorre o seu proprio contéudo (for ch in seq:). Ou pelo **índices** (for i in range(len(seq)):)
+
+6. Que formas tem de interromper/quebrar um ciclo?
+
+R: 
+* Break
+* Pass
+
+7. Em que principio se baseia o método de Monte Carlo?
+
+R: Baseia-se no método **estocástico**, que pode ser usado para calcular o valor aproximado de pi. Consiste em simular o lançamento de dardos na direção que queremos, contar a proporção dos que caem dentro do quadro de circunferência ou curva.
+
+8. Que diferenças existem entre **exceções** e **asserções**?
+
+R: Excecões nao param o programa, apresentam o erro. As asserções terminam o programa apresentando o erro.
 
 # Python Sintax
 
