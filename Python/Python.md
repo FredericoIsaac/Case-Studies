@@ -1297,3 +1297,44 @@ max() with iterable arguments
     *iterables (optional) - any number of iterables; can be more than one
     key (optional) - key function where the iterables are passed and comparison is performed based on its return value
     default (optional) - default value if the given iterable is empty
+
+type() - indica o tipo da variavel (int / float/ ...)
+
+"sebastian thrun".title() - ill uppercase the begining of the word
+
+"one fish, two fish".count(fish) - ill count the many times "fish" appear in the string
+
+# Exemplos
+
+### Variaveis
+
+However, the above isn't a great way to assign variables in most cases, because our variable names should be descriptive of the values they hold.
+
+    x, y, z = 2 , 3, 5
+
+Besides writing variable names that are descriptive, there are a few things to watch out for when naming variables in Python.
+
+1. Only use ordinary letters, numbers and underscores (snake_case or camelCase) in your variable names. They can’t have spaces, and need to start with a letter or underscore.
+
+2. You can’t use reserved words or built-in identifiers
+
+### Erros
+
+In general, there are two types of errors to look out for
+
+Exceptions
+Syntax
+An Exception is a problem that occurs when the code is running, but a 'Syntax Error' is a problem detected when Python checks the code before it runs it. 
+
+One important string method: format()
+We will be using the format() string method a good bit in our future work in Python, and you will find it very valuable in your coding, especially with your print statements.
+
+We can best illustrate how to use format() by looking at some examples:
+
+Example 1
+
+    print("Mohammed has {} balloons".format(27))
+
+Example 1 Output
+
+    Mohammed has 27 balloons
