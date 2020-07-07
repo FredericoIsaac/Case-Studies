@@ -990,6 +990,10 @@ Até pagina: 190
 
 ## 07/07/2020
 
+Observações: Vou querer interromper estudo do livro para fazer ***Nanodegree - Data Structures & Algorithms*** , esta com um mês gratis por isso tenho que me focar para conseguir nao pagar mais um mês.
+
+# Objetivo Secundario: Irei voltar no dia 08-08-2020 (Sabado). Entretanto irei acabar o capitulo 6, até a pagina 217
+
 Pagina atual: 190
 
 # Teste cohecimentos
