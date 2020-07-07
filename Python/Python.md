@@ -1326,6 +1326,10 @@ Exceptions
 Syntax
 An Exception is a problem that occurs when the code is running, but a 'Syntax Error' is a problem detected when Python checks the code before it runs it. 
 
+### Method Strings
+
+[Documentation](https://docs.python.org/3/library/stdtypes.html#string-methods)
+
 One important string method: format()
 We will be using the format() string method a good bit in our future work in Python, and you will find it very valuable in your coding, especially with your print statements.
 
@@ -1338,3 +1342,87 @@ Example 1
 Example 1 Output
 
     Mohammed has 27 balloons
+
+    Here are some examples for the .split() method.
+
+A basic split method:
+
+    new_str = "The cow jumped over the moon."
+    new_str.split()
+
+Output is:
+
+    ['The', 'cow', 'jumped', 'over', 'the', 'moon.']
+
+Here the separator is space, and the maxsplit argument is set to 3.
+
+    new_str.split(' ', 3)
+
+Output is:
+
+    ['The', 'cow', 'jumped', 'over the moon.']
+
+Definition and Usage
+
+The rfind() method finds the last occurrence of the specified value.
+
+## Lists
+
+You can index from the end of a list by using negative values, where -1 is the last element, -2 is the second to last element and so on.
+
+    list_of_random_things = [1, 3.4, 'a string', True]
+    >>> list_of_random_things[-1] 
+    True
+    >>> list_of_random_things[-2] 
+    a string
+
+### Useful Functions for Lists I
+
+len() returns how many elements are in a list.
+
+max() returns the greatest element of the list. How the greatest element is determined depends on what type objects are in the list. The maximum element in a list of numbers is the largest number. The maximum elements in a list of strings is element that would occur last if the list were sorted alphabetically. This works because the the max function is defined in terms of the greater than comparison operator. The max function is undefined for lists that contain elements from different, incomparable types.
+
+min() returns the smallest element in a list. min is the opposite of max, which returns the largest element in a list.
+
+sorted() returns a copy of a list in order from smallest to largest, leaving the list unchanged.
+
+Join is a string method that takes a list of strings as an argument, and returns a string consisting of the list elements joined by a separator string.
+
+    new_str = "\n".join(["fore", "aft", "starboard", "port"])
+    print(new_str)
+
+A helpful method called append adds an element to the end of a list.
+
+    letters = ['a', 'b', 'c', 'd']
+    letters.append('z')
+    print(letters)
+
+Output:
+
+    ['a', 'b', 'c', 'd', 'z']
+
+## Dictionary
+
+get with a Default Value
+
+Dictionaries have a related method that's also useful, get(). get() looks up values in a dictionary, but unlike looking up values with square brackets, get() returns None (or a default value of your choice) if the key isn't found. If you expect lookups to sometimes fail, get() might be a better tool than normal square bracket lookups.
+
+    >>> elements.get('dilithium')
+    None
+    >>> elements['dilithium']
+    KeyError: 'dilithium'
+    >>> elements.get('kryptonite', 'There\'s no such element!')
+    "There's no such element!"
+
+## Set
+
+Sets are a mutable collection of distinct (unique) immutable values that are unordered.
+
+You can initialize an empty set by using set().
+
+emptySet = set()
+To intialize a set with values, you can pass in a list to set().
+
+dataScientist = set(['Python', 'R', 'SQL', 'Git', 'Tableau', 'SAS'])
+
+![Data Structures - Python](/Python\images\data_structures.png)
