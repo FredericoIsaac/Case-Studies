@@ -1414,6 +1414,62 @@ Dictionaries have a related method that's also useful, get(). get() looks up val
     >>> elements.get('kryptonite', 'There\'s no such element!')
     "There's no such element!"
 
+### Building Dictionarys
+
+Method 1: Using a for loop to create a set of counters
+
+Let's start with a list containing the words in a series of book titles:
+
+    book_title =  ['great', 'expectations','the', 'adventures', 'of', 'sherlock','holmes','the','great','gasby','hamlet','adventures','of','huckleberry','fin']
+
+Step 1: Create an empty dictionary.
+
+    word_counter = {}
+
+Step 2. Iterate through each element in the list. If an element is already included in the dictionary, add 1 to its value. If not, add the element to the dictionary and set its value to 1.
+
+    for word in book_title:
+        if word not in word_counter:
+            word_counter[word] = 1
+        else:
+            word_counter[word] += 1
+
+Another way to loop (with get()):
+
+Step 2. Iterate through each element, get() its value in the dictionary, and add 1.
+
+Recall that the dictionary get method is another way to retrieve the value of a key in a dictionary. Except unlike indexing, this will return a default value if the key is not found. If unspecified, this default value is set to None. We can use get with a default value of 0 to simplify the code from the first method above.
+
+    for word in book_title:
+        word_counter[word] = word_counter.get(word, 0) + 1
+
+What's happening here? 
+
+* The for loop iterates through the list as we saw earlier. The for loop feeds 'great' to the next statement in the body of the for loop.
+* In this line: word_counter[word] = word_counter.get(word,0) + 1, since the key 'great' doesn't yet exist in the dictionary, get() will return the value 0 and word_counter[word] will be set to 1.
+* Once it encounters a word that already exists in word_counter (e.g. the second appearance of 'the'), the value for that key is incremented by 1. On the second appearance of 'the', the key's value would add 1 again, resulting in 2.
+
+Iterating Through Dictionaries with For Loops
+
+    cast = {
+            "Jerry Seinfeld": "Jerry Seinfeld",
+            "Julia Louis-Dreyfus": "Elaine Benes",
+            "Jason Alexander": "George Costanza",
+            "Michael Richards": "Cosmo Kramer"
+        }
+
+If you wish to iterate through both keys and values, you can use the built-in method items like this:
+
+    for key, value in cast.items():
+        print("Actor: {}    Role: {}".format(key, value))
+
+This outputs:
+
+    Actor: Jerry Seinfeld    Role: Jerry Seinfeld
+    Actor: Julia Louis-Dreyfus    Role: Elaine Benes
+    Actor: Jason Alexander    Role: George Costanza
+    Actor: Michael Richards    Role: Cosmo Kramer
+
 ## Set
 
 Sets are a mutable collection of distinct (unique) immutable values that are unordered.
@@ -1426,3 +1482,30 @@ To intialize a set with values, you can pass in a list to set().
 dataScientist = set(['Python', 'R', 'SQL', 'Git', 'Tableau', 'SAS'])
 
 ![Data Structures - Python](/Python\images\data_structures.png)
+
+## Boolean
+
+By default, the truth value of an object in Python is considered True unless specified as False in the documentation.
+
+Here are most of the built-in objects that are considered False in Python:
+
+* constants defined to be false: None and False
+* zero of any numeric type: 0, 0.0, 0j, Decimal(0), Fraction(0, 1)
+* empty sequences and collections: '"", (), [], {}, set(), range(0)
+
+Example:
+
+    errors = 3
+    if errors:
+        print("You have {} errors to fix!".format(errors))
+    else:
+        print("No errors to fix!")
+
+In this code, errors has the truth value True because it's a non-zero number, so the error message is printed. This is a nice, succinct way of writing an if statement.
+
+## Break, Continue
+
+Sometimes we need more control over when a loop should end, or skip an iteration. In these cases, we use the break and continue keywords, which can be used in both for and while loops.
+
+break terminates a loop
+continue skips one iteration of a loop
