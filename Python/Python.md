@@ -1509,3 +1509,32 @@ Sometimes we need more control over when a loop should end, or skip an iteration
 
 break terminates a loop
 continue skips one iteration of a loop
+
+
+## Python Generators
+
+A generator in Python is similar to a function except instead of returning a value and exiting a process, a generator will pause the process, saving its state for next time. The biggest difference between a function and generator from a code perspective is one word: return is changed to yield.
+
+To create the next successive even number simply call next() on the generator object, and it will yield the next iteration. After yield is called, everything in the state of the generator function freezes, and the value is returned. When the generator is called again with next(), it picks back up right where it stopped at yield from before.
+
+    # Definition of the generator to produce even numbers.
+    def all_even():
+        n = 0
+        while True:
+            yield n
+            n += 2
+
+    my_gen = all_even()
+
+    # Generate the first 5 even numbers.
+    for i in range(5):
+        print(next(my_gen))
+
+    # Now go and do some other processing.
+    do_something = 4
+    do_something += 3
+    print(do_something)
+
+    # Now go back to generating more even numbers.
+    for i in range(100):
+        print(next(my_gen))
