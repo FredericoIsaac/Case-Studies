@@ -328,4 +328,97 @@ Example 2
 
 So in this example we have two integers (n and counter) and an expanding list, and therefore our space complexity will be 4*n + 8 since we have an expanding integer list and two integer data types. This is an example of linear space complexity.
 
+# Data Structures
+
+## Array and Linked Lists
+
+### Collections
+
+Properties of colletions:
+
+* Don't have a particular order (so you can't say "give me the third element in this collection")
+* Don't have to have objects of the same type.
+
+Data structures are extensions of colletions that get there properties and sum new ones
+
+#### List
+
+A list has all the properties of a collections but the objects have a order
+
+* Have an order (so you can say things like "give me the 3rd item in the list")
+* Have no fixed length (you can add or remove elements)
+
+##### Arrays vs lists vs list 
+
+ One of the key differences is that arrays have indices, while lists do not.
+
+An array is a place in memory continuous that has the same size. And that's why it have index, since we know the location in memory of one element we know that the other's are side by side.
+
+In constrast the elements of a list can be or not next to one another in memory.
+
+>A Python list is essentially implemented like an array (specifically, it behaves like a dynamic array, if you're curious). In particular, the elements of a Python list are contiguous in memory, and they can be accessed using an index.
+
+And the Python list has more functionality that an array like the methods pop() and append()
+
+###### Strings
+
+[Strings Methods](https://docs.python.org/3/library/stdtypes.html#string-methods)
+
+Python Strings are Arrays. They are arrays of bytes representing unicode characters (char *str - in language C)
+
+#### Linked Lists
+
+Made of nodes that has a value and a pointer (reference)
+
+Create a Linked List:
+
+    # Creating a Node class with value and next attributes
+    class Node:
+        def __init__(self, value):
+            self.value = value
+            self.next = None
+
+    ## Create the head of the linked list and give value 2
+    head = Node(2)
+    # Create another Node with value 1 and linked head to that Node
+    head.next = Node(1)
+
+    # To print the value o the next Node:
+    print(head.next.value)
+
+
+Create a linked list using iteration
+
+    def create_linked_list_better(input_list):
+        
+        head = None
+        tail = None
+        
+        for value in input_list:
+            
+            if head is None:
+                head = Node(value)
+                tail = head            
+            else:
+                tail.next = Node(value)
+                tail = tail.next        # update the tail
+                
+        return head
+
+
+Traversing the list
+
+One way to pass through the linked list and print is values is:
+
+    def print_linked_list(head):
+        # Declare the current node has the beginning of the list
+        current_node = head
+        
+        # While is not the end of the linked list
+        while current_node is not None:
+            print(current_node.value)
+            # Directionate the current node to the next in the linked list
+            current_node = current_node.next
+            
+    print_linked_list(head)
 

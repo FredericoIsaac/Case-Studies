@@ -289,6 +289,28 @@ A bitwise OR is a binary operation that takes two bit patterns of equal length a
 A bitwise XOR is a binary operation that takes two bit patterns of equal length and performs the logical exclusive OR operation on each pair of corresponding bits. The result in each position is 1 if only one of the bits is 1, but will be 0 if both are 0 or both are 1.
 
     0101 (decimal 5) XOR 0011 (decimal 3) = 0110 (decimal 6)
+_________________
+    def hamming_distance(str1, str2):
+
+    """
+    Calculate the hamming distance of the two strings
+
+    Args:
+       str1(string),str2(string): Strings to be used for finding the hamming distance
+    Returns:
+       int: Hamming Distance
+    """
+    
+    # TODO: Write your solution here
+    xor = [ chr ( ord (a) ^ ord (b) ) for a,b in zip (str1, str2) ]
+    count = 0
+    for distance in xor:
+        if distance != '\x00':
+            count += 1
+    if len(str1) - len(str2) != 0:
+        count = None
+    return count
+    pass
 
 #### Arithmetic Shift ( << >>)
 
@@ -1549,7 +1571,7 @@ list(zip(['a', 'b', 'c'], [1, 2, 3])) would output [('a', 1), ('b', 2), ('c', 3)
 
 Like we did for range() we need to convert it to a list or iterate through it with a loop to see the elements.
 
-You could unpack each tuple in a for loop like this.
+You could unpack each tuple in a for loop like this (it can be more that two values).
 
     letters = ['a', 'b', 'c']
     nums = [1, 2, 3]
@@ -1577,3 +1599,31 @@ This code would output:
     2 c
     3 d
     4 e
+
+#### List Comprehensions
+
+Opção demorada:
+
+    cities = ["new york city", "mountain view", "chicago", "los angeles"]
+
+    capitalized_cities = []
+    for city in cities:
+        capitalized_cities.append(city.title())
+
+    print(capitalized_cities)
+
+Opção list comprehensions:
+
+    cities = ["new york city", "mountain view", "chicago", "los angeles"]
+
+    capitalized_cities = [city.title() for city in cities]
+
+Outro exemplo com conditionals:
+
+So com o if:
+
+    square = [x**2 for x in range(9) if x % 2 == 0]
+
+Com if e else:
+
+    square = [x**2 if x % 2 == 0 else x + 3 for x in range(9)]
