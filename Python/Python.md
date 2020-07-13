@@ -1627,3 +1627,90 @@ So com o if:
 Com if e else:
 
     square = [x**2 if x % 2 == 0 else x + 3 for x in range(9)]
+
+
+## Functions
+
+#### Default Arguments
+
+We can add default arguments in a function to have default values for parameters that are unspecified in a function call.
+
+def cylinder_volume(height, radius=5):
+    pi = 3.14159
+    return height * pi * radius ** 2
+In the example above, radius is set to 5 if that parameter is omitted in a function call. If we call cylinder_volume(10), the function will use 10 as the height and 5 as the radius. However, if we call cylinder_volume(10, 7) the 7 will simply overwrite the default value of 5.
+
+#### Scope
+
+Variables defined outside functions, as in the example below, can still be accessed within a function. Here, word is said to have a global scope.
+
+    # This works fine
+    word = "hello"
+
+    def some_function():
+        print(word)
+
+    some_function()
+
+Notice that we can still access the value of the global variable word within this function. However, the value of a global variable can not be modified inside the function. If you want to modify that variable's value inside this function, it should be passed in as an argument. You'll see more on this in the next quiz.
+
+#### DocString
+
+    """
+    This is an example of Google style.
+
+    Args:
+        param1: This is the first param.
+        param2: This is a second param.
+
+    Returns:
+        This is a description of what is returned.
+
+    Raises:
+        KeyError: Raises an exception.
+    """
+_____________
+    def readable_timedelta(days):
+        """
+        Return a string of the number of weeks and days included in days.
+
+        Parameters:
+        days -- number of days to convert (int)
+
+        Returns:
+        string of the number of weeks and days included in days
+        """
+        weeks = days // 7
+        remainder = days % 7
+        return "{} week(s) and {} day(s)".format(weeks, remainder)
+
+
+#### Lambda Expressions
+
+Function that doesnt have name.
+
+    # Funtion:
+    def double(x):
+        return x * 2
+    
+    # Lambda:
+    double = lambda x: x * 2
+
+Exemplo:
+
+    numbers = [
+                [34, 63, 88, 71, 29],
+                [90, 78, 51, 27, 45],
+                [63, 37, 85, 46, 22],
+                [51, 22, 34, 11, 18]
+            ]
+
+    def mean(num_list):
+        return sum(num_list) / len(num_list)
+
+    averages = list(map(mean, numbers))
+    print(averages)
+
+Rewrite this code to be more concise by replacing the mean function with a lambda expression defined within the call to map().
+
+    averages = list(map(lambda x : sum(x)/ len(x), numbers))

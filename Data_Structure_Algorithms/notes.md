@@ -370,7 +370,7 @@ Python Strings are Arrays. They are arrays of bytes representing unicode charact
 
 Made of nodes that has a value and a pointer (reference)
 
-Create a Linked List:
+##### Create a Linked List:
 
     # Creating a Node class with value and next attributes
     class Node:
@@ -387,7 +387,7 @@ Create a Linked List:
     print(head.next.value)
 
 
-Create a linked list using iteration
+##### Create a linked list using iteration
 
     def create_linked_list_better(input_list):
         
@@ -406,7 +406,7 @@ Create a linked list using iteration
         return head
 
 
-Traversing the list
+##### Traversing the list
 
 One way to pass through the linked list and print is values is:
 
@@ -422,3 +422,355 @@ One way to pass through the linked list and print is values is:
             
     print_linked_list(head)
 
+
+
+##### Singly Linked Lists
+
+Usually you'll want to create a LinkedList class as a wrapper for the nodes themselves and to provide common methods that operate on the list. For example you can implement an append method that adds a value to the end of the list.
+
+    class LinkedList:
+        def __init__(self):
+            self.head = None
+
+###### Method to append in a linked list
+
+        # If the linkedList is in the beggining
+        def append(self, value):
+            if self.head is None:
+                self.head = Node(value)
+                return
+            # if the linked list already has more nodes
+            
+            # Move to the tail (the last node)
+            node = self.head
+             # while node next has values to another node continue
+            while node.next:
+                node = node.next
+
+            # reached the end of the linked list
+            node.next = Node(value)
+            return
+
+###### Method to transforms a linked list in a list 
+
+        def to_list(self):
+            out_list = []
+
+            node = self.head
+            while node:
+                out_list.append(node.value)
+                node = node.next
+
+            return out_list
+
+###### Method Prepend a node to the beginning of the list
+
+        def prepend(self, value):
+            """ Prepend a node to the beginning of the list """
+
+            if self.head is None:
+                self.head = Node(value)
+                return
+
+            new_head = Node(value)
+            new_head.next = self.head
+            self.head = new_head
+        
+###### Serch() function that search by value
+        def search(self, value):
+            """ Search the linked list for a node with the requested value and return the node. """
+            if self.head is None:
+                return None
+
+            node = self.head
+            while node:
+                if node.value == value:
+                    return node
+                node = node.next
+
+            raise ValueError("Value not found in the list.")
+        
+######  Remove() remove a nove 
+
+        def remove(self, value):
+            """ Delete the first node with the desired data. """
+            if self.head is None:
+                return
+
+            if self.head.value == value:
+                self.head = self.head.next
+                return
+
+            node = self.head
+            while node.next:
+                if node.next.value == value:
+                    node.next = node.next.next
+                    return
+                node = node.next
+
+            raise ValueError("Value not found in the list.")
+
+######  pop() functions that removes the last element in the linked list
+
+        def pop(self):
+        """ Return the first node's value and remove it from the list. """
+        if self.head is None:
+            return None
+
+        node = self.head
+        self.head = self.head.next
+
+        return node.value
+        
+######  insert() 
+
+        def insert(self, value, pos):
+            """ Insert value at pos position in the list. If pos is larger than the
+                length of the list, append to the end of the list. """
+            # If the list is empty 
+            if self.head is None:
+                self.head = Node(value)
+                return
+                
+            if pos == 0:
+                self.prepend(value)
+                return
+
+            index = 0
+            node = self.head
+            while node.next and index <= pos:
+                if (pos - 1) == index:
+                    new_node = Node(value)
+                    new_node.next = node.next
+                    node.next = new_node
+                    return
+
+                index += 1
+                node = node.next
+            else:
+                self.append(value)
+        
+######  size() functions and test its functionality
+
+        def size(self):
+            """ Return the size or length of the linked list. """
+            size = 0
+            node = self.head
+            while node:
+                size += 1
+                node = node.next
+
+            return size
+
+###### Reversing a linked list exercise
+
+    class Node:
+        def __init__(self, value):
+            self.value = value
+            self.next = None
+
+    class LinkedList:
+        def __init__(self):
+            self.head = None
+            
+        def append(self, value):
+            if self.head is None:
+                self.head = Node(value)
+                return
+            
+            node = self.head
+            while node.next:
+                node = node.next
+
+            node.next = Node(value)
+            
+        def __iter__(self):
+            node = self.head
+            while node:
+                yield node.value
+                node = node.next
+                
+        def __repr__(self):
+            return str([v for v in self])
+    def reverse(linked_list):
+        """
+        Reverse the inputted linked list
+
+        Args:
+        linked_list(obj): Linked List to be reversed
+        Returns:
+        obj: Reveresed Linked List
+        """
+        new_list = LinkedList()
+        
+        prev_node = None
+
+        """
+        A simple idea - Pick a node from the original linked list traversing form the beginning, and 
+        prepend it to the new linked list. 
+        We have to use a loop to iterate over the nodes of original linked list
+        """
+        # In this "for" loop, the "value" is just a variable whose value will be updated in each iteration
+        for value in linked_list:
+            # create a new node
+            new_node = Node(value)
+            
+            # Make the new_node.next point to the 
+            # node created in previous iteration
+            new_node.next = prev_node 
+            
+            # This is the last statement of the loop
+            # Mark the current new node as the "prev_node" for next iteration
+            prev_node = new_node
+        
+        # Update the new_list.head to point to the final node that came out of the loop
+        new_list.head = prev_node
+        
+        return new_list
+
+##### Doubly Linked Lists
+
+This type of list has connections backwards and forwards through the list.
+
+    class DoubleNode:
+        def __init__(self, value):
+            self.value = value
+            self.next = None
+            self.previous = None
+
+    class DoublyLinkedList:
+        def __init__(self):
+            self.head = None
+            self.tail = None
+
+        # Implementing the method append to  double linked list        
+        def append(self, value):
+            if self.head is None:
+                self.head = DoubleNode(value)
+                self.tail = self.head
+                return
+                
+            self.tail.next = DoubleNode(value)
+            self.tail.next.previous = self.tail
+            self.tail = self.tail.next
+            return
+
+
+##### Circular Linked Lists
+
+Circular linked lists occur when the chain of nodes links back to itself somewhere. For example `NodeA -> NodeB -> NodeC -> NodeD -> NodeB` is a circular list because `NodeD` points back to `NodeB` creating a loop `NodeB -> NodeC -> NodeD -> NodeB`. 
+
+![circula-linked-list](/Data_Structure_Algorithms\images\circular_linked_list.png)
+
+Detecting Loops in Linked 
+
+In this notebook, you'll implement a function that detects if a loop exists in a linked list. The way we'll do this is by having two pointers, called "runners", moving through the list at different rates. Typically we have a "slow" runner which moves at one node per step and a "fast" runner that moves at two nodes per step.
+
+If a loop exists in the list, the fast runner will eventually move behind the slow runner as it moves to the beginning of the loop. Eventually it will catch up to the slow runner and both runners will be pointing to the same node at the same time. If this happens then you know there is a loop in the linked list. Below is an example where we have a slow runner (the green arrow) and a fast runner (the red arrow).
+
+![loop-linked-list](/Data_Structure_Algorithms\images\circular_loops_list.png)
+
+    class Node:
+        def __init__(self, value):
+            self.value = value
+            self.next = None
+            
+    class LinkedList:
+        def __init__(self, init_list=None):
+            self.head = None
+            if init_list:
+                for value in init_list:
+                    self.append(value)
+            
+        def append(self, value):
+            if self.head is None:
+                self.head = Node(value)
+                return
+            
+            # Move to the tail (the last node)
+            node = self.head
+            while node.next:
+                node = node.next
+            
+            node.next = Node(value)
+            return
+
+    list_with_loop = LinkedList([2, -1, 3, 0, 5])
+
+    # Creating a loop where the last node points back to the second node
+    loop_start = list_with_loop.head.next
+
+    node = list_with_loop.head
+    while node.next: 
+        node = node.next   
+    node.next = loop_start
+
+    # Solution
+
+    def iscircular(linked_list):
+        """
+        Determine wether the Linked List is circular or not
+
+        Args:
+        linked_list(obj): Linked List to be checked
+        Returns:
+        bool: Return True if the linked list is circular, return False otherwise
+        """
+
+        if linked_list.head is None:
+            return False
+        
+        slow = linked_list.head
+        fast = linked_list.head
+        
+        while fast and fast.next:
+            # slow pointer moves one node
+            slow = slow.next
+            # fast pointer moves two nodes
+            fast = fast.next.next
+            
+            if slow == fast:
+                return True
+        
+        # If we get to a node where fast doesn't have a next node or doesn't exist itself, 
+        # the list has an end and isn't circular
+        return False
+
+
+
+
+# Algorithms
+
+## Complexity
+
+To find out the efficiency of an algorithm you can make  table of results that you can see the pattern and by doing a lot you can know what tipe is.
+![table-binary](/Data_Structure_Algorithms\images\calcullus-binary-search.png)
+[Video explaining](https://www.youtube.com/watch?v=7WbRB7dSyvc)
+
+![calcullus-binary-complexity](/Data_Structure_Algorithms\images\complexity-steps-bynary.png)
+
+## Linear search
+
+* What would the time complexity be for linear search?
+
+    Order of n - **O(n)**
+
+## Binary search
+
+Note that the word binary means "having two parts". Binary search means we are doing a search where, at each step, we divide the input into two parts. Also note that the data we are searching through has to be sorted.
+
+* What would the time complexity be for linear search?
+
+    Order of n - **O(log(n))**
+
+In summary:
+
+* Binary search is a search algorithm where we find the position of a target value by comparing the middle value with this target value.
+* If the middle value is equal to the target value, then we have our solution (we have found the position of our target value).
+* If the target value comes before the middle value, we look for the target value in the left half.
+* Otherwise, we look for the target value in the right half.
+* We repeat this process as many times as needed, until we find the target value
+
+
+#### Complexity
+Para descobrir a 
