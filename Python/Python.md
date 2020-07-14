@@ -1714,3 +1714,70 @@ Exemplo:
 Rewrite this code to be more concise by replacing the mean function with a lambda expression defined within the call to map().
 
     averages = list(map(lambda x : sum(x)/ len(x), numbers))
+
+## Error and Exceptions
+
+[Exceptions in Python](https://docs.python.org/3/library/exceptions.html#bltin-exceptions)
+
+There are two kinds of errors in Python - syntax errors and exceptions. Syntax errors occur when you don't use correct syntax and Python doesn't know how to run your code. Exceptions occur when Python runs into unexpected situations while executing your code and can happen even if you used correct syntax.
+
+### Try Statement
+
+We can use try statements to handle exceptions. There are four clauses you can use.
+
+* try: This is the only mandatory clause in a try statement. The code in this block is the first thing that Python runs in a try statement.
+* except: If Python runs into an exception while running the try block, it will jump to the except block that handles that exception.
+* else: If Python runs into no exceptions while running the try block, it will run the code in this block after running the try block.
+* finally: Before Python leaves this try statement, it will run the code in this finally block under any conditions, even if it's ending the program. E.g., if Python ran into an error while running code in the except or else block, this finally block will still be executed before stopping the program.
+
+        while True:
+            try:
+                x = int(input("Enter a number: "))
+                # Breaks out of the loop if right input
+                break
+            # If a ValueError is called (input = "dasdsads" )
+            except ValueError:
+                print("That\'s not a valid number!")
+            # if ctrl + c for example or enter
+            except KeyboardInterrupt:
+                print("\nNo input taken")
+                break
+            # It ill always run this part of the code:
+            finally:
+                print("\nAttempted Input\n")
+
+If we want this handler to address more than one type of exception, we can include a parenthesized tuple after the except with the exceptions.
+
+    try:
+        # some code
+    except (ValueError, KeyboardInterrupt):
+        # some code
+
+Example:
+
+    def party_planner(cookies, people):
+        leftovers = None
+        num_each = None
+
+        try:
+            num_each = cookies // people
+            leftovers = cookies % people
+        except ZeroDivisionError:
+            print("Oops, you entered 0 people will be attending.")
+            print("Please enter a good number of people for a party.")
+
+        return(num_each, leftovers)
+
+##### Accessing Error Messages
+
+When you handle an exception, you can still access its error message like this:
+
+    try:
+        # some code
+    except ZeroDivisionError as e:
+    # some code
+    print("ZeroDivisionError occurred: {}".format(e))
+
+This would print something like this:
+
+    ZeroDivisionError occurred: integer division or modulo by zero

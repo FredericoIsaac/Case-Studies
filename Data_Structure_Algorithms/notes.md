@@ -771,6 +771,176 @@ In summary:
 * Otherwise, we look for the target value in the right half.
 * We repeat this process as many times as needed, until we find the target value
 
+Example of implementing bynary code
 
-#### Complexity
-Para descobrir a 
+    def binary_search(array, target):
+        start_index = 0
+        end_index = len(array) - 1
+        
+        while start_index <= end_index:
+            mid_index = (start_index + end_index)//2        # integer division in Python 3
+            
+            mid_element = array[mid_index]
+            
+            if target == mid_element:                       # we have found the element
+                return mid_index
+            
+            elif target < mid_element:                      # the target is less than mid element
+                end_index = mid_index - 1                   # we will only search in the left half
+            
+            else:                                           # the target is greater than mid element
+                start_index = mid_element + 1               # we will search only in the right half
+        
+        return -1
+
+Using a recursive way:
+
+    def binary_search_recursive_soln(array, target, start_index, end_index):
+        if start_index > end_index:
+            return -1
+        
+        mid_index = (start_index + end_index)//2
+        mid_element = array[mid_index]
+        
+        if mid_element == target:
+            return mid_index
+        elif target < mid_element:
+            return binary_search_recursive_soln(array, target, start_index, mid_index - 1)
+        else:
+            return binary_search_recursive_soln(array, target, mid_index + 1, end_index)
+            
+
+Example of contains.
+
+
+The second variation is a function that returns a boolean value indicating whether an element is present, but with no information about the location of that element.
+
+One option is just to wrap binary search:
+
+    def contains(target, source):
+        return recursive_binary_search(target, source) is not None
+
+Another choice is to build a simpler binary search directly into the function:
+
+    def contains(target, source):
+        # Since we don't need to keep track of the index, we can remove the `left` parameter.
+        if len(source) == 0:
+            return False
+        center = (len(source)-1) // 2
+        if source[center] == target:
+            return True
+        elif source[center] < target:
+            return contains(target, source[center+1:])
+        else:
+            return contains(target, source[:center])
+
+
+#### Trie
+
+You've learned about Trees and Binary Search Trees. In this notebook, you'll learn about a new type of Tree called Trie. Before we dive into the details, let's talk about the kind of problem Trie can help with.
+
+Let's say you want to build software that provides spell check. This software will only say if the word is valid or not. It doesn't give suggested words. From the knowledge you've already learned, how would you build this?
+
+The simplest solution is to have a hashmap of all known words. It would take O(1) to see if a word exists, but the memory size would be O(n*m), where n is the number of words and m is the length of the word. Let's see how a Trie can help decrease the memory usage while sacrificing a little on performance.
+
+Basic Trie
+Let's look at a basic Trie with the following words: "a", "add", and "hi"
+
+    basic_trie = {
+        # a and add word
+        'a': {
+            'd': {
+                'd': {'word_end': True},
+                'word_end': False},
+            'word_end': True},
+        # hi word
+        'h': {
+            'i': {'word_end': True},
+            'word_end': False}}
+
+
+    print('Is "a"   a word: {}'.format(basic_trie['a']['word_end']))
+    print('Is "ad"  a word: {}'.format(basic_trie['a']['d']['word_end']))
+    print('Is "add" a word: {}'.format(basic_trie['a']['d']['d']['word_end']))
+
+You can lookup a word by checking if word_end is True after traversing all the characters in the word. Let's look at the word "hi". The first letter is "h", so you would call basic_trie['h']. The second letter is "i", so you would call basic_trie['h']['i']. Since there's no more letters left, you would see if this is a valid word by getting the value of word_end. Now you have basic_trie['h']['i']['word_end'] with True or False if the word exists.
+
+In basic_trie, words "a" and "add" overlapp. This is where a Trie saves memory. Instead of having "a" and "add" in different cells, their characters treated like nodes in a tree. Let's see how we would check if a word exists in basic_trie.
+
+    def is_word(word):
+        """
+        Look for the word in `basic_trie`
+        """
+        current_node = basic_trie
+        
+        for char in word:
+            if char not in current_node:
+                return False
+            
+            current_node = current_node[char]
+        
+        return current_node['word_end']
+
+    # Test words
+    test_words = ['ap', 'add']
+    for word in test_words:
+        if is_word(word):
+            print('"{}" is a word.'.format(word))
+        else:
+            print('"{}" is not a word.'.format(word))
+
+
+##### Trie Using a Class
+
+Just like most tree data structures, let's use classes to build the Trie. Implement two functions for the Trie class below. Implement add to add a word to the Trie. Implement exists to return True if the word exist in the trie and False if the word doesn't exist in the trie.
+
+    class TrieNode(object):
+        def __init__(self):
+            self.is_word = False
+            self.children = {}
+
+
+    class Trie(object):
+        def __init__(self):
+            self.root = TrieNode()
+
+        def add(self, word):
+            """
+            Add `word` to trie
+            """
+            current_node = self.root
+
+            for char in word:
+                if char not in current_node.children:
+                    current_node.children[char] = TrieNode()
+                current_node = current_node.children[char]
+
+            current_node.is_word = True
+
+        def exists(self, word):
+            """
+            Check if word exists in trie
+            """
+            current_node = self.root
+
+            for char in word:
+                if char not in current_node.children:
+                    return False
+                current_node = current_node.children[char]
+
+            return current_node.is_word
+
+
+### Heaps
+
+Its is a specific type of tree
+
+Rules:
+* The elements are rearranged in decrease or increase order, since the root element is the max value or min of the tree
+* There are two types of heaps, **max heaps and min heaps**, in a max heaps the parent is always bigger then the child, and in min is the opposite
+
+* Heapify - is the operation that we reorganized the tree based on the heap property.
+
+If it is a max heap, inserting a new value to the heap we have to find a open space insert the value, then rearranged that the parent has a bigger value
+
+* Implementation - normaly they are stored in the arrays
