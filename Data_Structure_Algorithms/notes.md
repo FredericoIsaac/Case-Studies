@@ -492,6 +492,18 @@ Usually you'll want to create a LinkedList class as a wrapper for the nodes them
         
 ######  Remove() remove a nove 
 
+Pseudocode
+
+Linked List:
+
+1. Create two pointers (pointer 1 points to the head, points 2 point to the head next)
+2. Advnce until point2 find the target
+3. Create another pointer (pointer3) that points to the node that point2 is poiting
+4. Advance point2 to target next
+5. pointer1 to point to node that pointer2 is aiming
+6. Remove pointer 3
+
+
         def remove(self, value):
             """ Delete the first node with the desired data. """
             if self.head is None:
@@ -523,6 +535,17 @@ Usually you'll want to create a LinkedList class as a wrapper for the nodes them
         return node.value
         
 ######  insert() 
+
+Pseudocode:
+
+Linked List:
+
+1. Create a new pointer that points to the head
+2. Seek up two but not including to the node that we want to
+3. Create next node
+4. Make new node point to the node target
+5. Previous node points to new node
+
 
         def insert(self, value, pos):
             """ Insert value at pos position in the list. If pos is larger than the
