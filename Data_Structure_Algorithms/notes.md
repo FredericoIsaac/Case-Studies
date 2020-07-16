@@ -760,8 +760,6 @@ If a loop exists in the list, the fast runner will eventually move behind the sl
         return False
 
 
-
-
 # Algorithms
 
 ## Complexity

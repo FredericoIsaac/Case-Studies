@@ -145,36 +145,28 @@ class linked_list:
                 return
             # If not exist the function update index
             trav_index += 1 
+    
+    def reverse(self):
+        """ Reverse a Linked List  A -> B -> C to A <- B <- C
+        INCOMPLETE! APPEARS NONE IN THE FINAL AND SHOULD APPEAR THE LAST ELEMENT """
+        # Create a variable that indicates the current node
+        trav = self.head
+        # Create variabel that hold te last node
+        last_node = None
+        # Iterate until the end of the list
+        while trav:
+            # Save current node pointer
+            next_node = trav.next
+            # Change pointer of the current node to point to the last node we have seen
+            trav.next = last_node
+            # Atualize last_node to current node
+            last_node = trav
+            # Continue to iterate
+            trav = next_node
+        # Change head to point to last node    
+        self.head = last_node
 
-    def swap_nodes(self, key_1, key_2):
-        """ Swap to nodes """
-        # Checks if values are the same, return if true
-        if key_1 == key_2:
-            raise Exception("You are swaping same values")
-        
-        # Create a variable that has the current Node for the key_1
-        trav_1 = self.head
-        # Iterate over the linked list to find key_1
-        while trav_1.next != None and trav_1.data != key_1:
-            trav_1 = trav_1.next
-        
-        # Create a variable that has the current Node for the key_2
-        trav_2 = self.head
-        # Iterate over the linked list to find key_2
-        while trav_2.next != None and trav_2.data != key_2:
-            trav_2 = trav_2.next
-        
-        # If dont found keys
-        if not trav_1 or not trav_2:
-            raise Exception("The values for keys dont appear!")
-        
-
-
-
-        
             
-
-
 # Creating a variable that is the linked_list
 my_list = linked_list()
 my_list.append(5)
@@ -188,6 +180,8 @@ print("Element at the first index: {}".format(my_list.get(1)))
 my_list.erase(1)
 my_list.display()
 my_list.insert_between_after(5, 0)
+my_list.display()
+my_list.reverse()
 my_list.display()
 
 # Creating a linked List with three nodes
@@ -204,8 +198,6 @@ third_node = Node("c")
 first_node.next = second_node
 second_node.next = third_node
 
-my_list2.swap_nodes("c","a")
-my_list2.display()
 
 
 

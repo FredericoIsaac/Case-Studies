@@ -1810,3 +1810,170 @@ Python provides a special syntax that auto-closes a file for you once you're fin
         file_data = f.read()
         
 This with keyword allows you to open a file, do operations on it, and automatically close it after the indented code is executed, in this case, reading from the file. Now, we don’t have to call f.close()! You can only access the file object, f, within this indented block.
+
+    with open("camelot.txt") as song:
+        print(song.read(2))
+        print(song.read(8))
+
+Each time we called read on the file with an integer argument, it read up to that number of characters, outputted them, and kept the 'window' at that position for the next call to read. This makes moving around in the open file a little tricky, as there aren't many landmarks to navigate by.
+
+Conveniently, Python will loop over the lines of a file using the syntax for line in file. I can use this to create a list of lines in the file. Because each line still has its newline character attached, I remove this using .strip().
+
+    camelot_lines = []
+    with open("camelot.txt") as f:
+        for line in f:
+            camelot_lines.append(line.strip())
+
+    print(camelot_lines)
+
+Outputs:
+
+    ["We're the knights of the round table", "We dance whenever we're able"]
+
+## Import Python files
+
+If the python files are in the same directory:
+
+    import other_script
+
+To use functions and variables of other scripts (modules)
+
+    print(other_script.num)
+
+To simplify we can give other name to the module
+
+    import other_script as uf
+    print(uf.num)
+
+To avoid running executable statements in a script when it's imported as a module in another script, include these lines in an if __name__ == "__main__" block. Or alternatively, include them in a function called main() and call this in the if main block.
+
+    # useful_functions.py
+
+    def mean(num_list):
+        return sum(num_list) / len(num_list)
+
+    def add_five(num_list):
+        return [n + 5 for n in num_list]
+
+    def main():
+        print("Testing mean function")
+        n_list = [34, 44, 23, 46, 12, 24]
+        correct_mean = 30.5
+        assert(mean(n_list) == correct_mean)
+
+        print("Testing add_five function")
+        correct_list = [39, 49, 28, 51, 17, 29]
+        assert(add_five(n_list) == correct_list)
+
+        print("All tests passed!")
+
+    if __name__ == '__main__':
+        main()
+________        
+    # demo.py
+
+    import useful_functions as uf
+
+    scores = [88, 92, 79, 93, 85]
+
+    mean = uf.mean(scores)
+    curved = uf.add_five(scores)
+
+    mean_c = uf.mean(curved)
+
+    print("Scores:", scores)
+    print("Original Mean:", mean, " New Mean:", mean_c)
+
+    print(__name__)
+    print(uf.__name__)
+
+## Import Library's
+
+[Python Standard Library](https://docs.python.org/3.6/library/index.html)
+
+    import math
+
+    print(math.exp(3))
+
+#### Our favourite modules
+
+The Python Standard Library has a lot of modules! To help you get familiar with what's available, here are a selection of our favourite Python Standard Library modules and why we use them!
+
+* csv: very convenient for reading and writing csv files
+* collections: useful extensions of the usual data types including    OrderedDict, defaultdict and namedtuple
+* random: generates pseudo-random numbers, shuffles sequences randomly and chooses random items
+* string: more functions on strings. This module also contains useful collections of letters like string.digits (a string containing all characters which are valid digits).
+* re: pattern-matching in strings via regular expressions
+* math: some standard mathematical functions
+* os: interacting with operating systems
+* os.path: submodule of os for manipulating path names
+* sys: work directly with the Python interpreter
+* json: good for reading and writing json files (good for web work)
+
+To import just a method of a library
+
+    from collections import defaultdict
+    # or:
+    from collections import defaultdict, namedtuple
+    # giving name to modules:
+    from csv import reader as csvreader
+
+
+This ill import the method ***defaultdict*** from collections and nothing more
+
+In order to manage the code better, modules in the Python Standard Library are split down into sub-modules that are contained within a package. A package is simply a module that contains sub-modules. A sub-module is specified with the usual dot notation.
+
+    import package_name.submodule_name
+_____
+    import random
+    random.radint(0,10)
+
+    from random import randint
+    randint(0,10)
+
+### Third lybrary party
+
+terminal (gitbash):
+    
+    pip install pytz
+
+editor:
+
+    import pytz
+
+    ist_now = now.astimezone(ist)
+
+Is common practice to indicate in a file named "requirements.txt" the third party librarys that we use, so that anyone can use our code
+
+    # requirements.txt
+
+    name_package == version
+
+    beaitifulsoup4==4.5.1
+    bs4==0.0.1
+
+You can install all dependencys in the requerements.txt using pip:
+
+terminal / git bash :
+
+    pip install -r requitements.txt
+
+#### Useful Third-Party Packages
+
+* IPython - A better interactive Python interpreter
+* requests - Provides easy to use methods to make web requests. Useful for accessing web APIs.
+* Flask - a lightweight framework for making web applications and APIs.
+* Django - A more featureful framework for making web applications. Django is particularly good for designing complex, content heavy, web applications.
+* Beautiful Soup - Used to parse HTML and extract information from it. Great for web scraping.
+* pytest - extends Python's builtin assertions and unittest module.
+* PyYAML - For reading and writing YAML files.
+* NumPy - The fundamental package for scientific computing with Python. It contains among other things a powerful N-dimensional array object and useful linear algebra capabilities.
+* pandas - A library containing high-performance, data structures and data analysis tools. In particular, pandas provides dataframes!
+* matplotlib - a 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments.
+* ggplot - Another 2D plotting library, based on R's ggplot2 library.
+* Pillow - The Python Imaging Library adds image processing capabilities to your Python interpreter.
+* pyglet - A cross-platform application framework intended for game development.
+* Pygame - A set of Python modules designed for writing games.
+* pytz - World Timezone Definitions for Python
+
+
