@@ -766,6 +766,18 @@ If a loop exists in the list, the fast runner will eventually move behind the sl
 * Order **O(1)**
 * L.I.F.O - Last In, First Out
 
+## Queues
+
+* FIFO - First In, First Out
+* Head - the first element of the queue (the oldest)
+* Tail - the last element of the queue (the youngest)
+* Enqueue - add a element to the tail
+* Dequeue - remove the head element
+* Peek - look at the head element but dont remove it
+* Deques or Double ended queue - is a queue that goes both ways (head and tail)
+* Priority Queue - each element has a priority number, when dequeue remove the element with the highest priority number
+
+
 # Algorithms
 
 ## Complexity
