@@ -759,6 +759,12 @@ If a loop exists in the list, the fast runner will eventually move behind the sl
         # the list has an end and isn't circular
         return False
 
+## Stacks
+
+* Push - Introduce a new element to the stack, always on top
+* Pop - removes a new elemento from the stack, always on top
+* Order **O(1)**
+* L.I.F.O - Last In, First Out
 
 # Algorithms
 
