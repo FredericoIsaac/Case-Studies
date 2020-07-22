@@ -776,6 +776,11 @@ If a loop exists in the list, the fast runner will eventually move behind the sl
 * Peek - look at the head element but dont remove it
 * Deques or Double ended queue - is a queue that goes both ways (head and tail)
 * Priority Queue - each element has a priority number, when dequeue remove the element with the highest priority number
+* Complexity of a linked list queue is **O(1)** (enqueue and dequeue)
+
+## Recursion
+
+With recursion, we solve a problem by first solving smaller instances of the same problem. In practice, this often involves calling a function from within itself—in other words, we feed some input into the function, and the function produces some output—which we then feed back into the same function. And we continue to do this until we arrive at the solution.
 
 
 # Algorithms
