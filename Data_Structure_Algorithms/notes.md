@@ -782,6 +782,62 @@ If a loop exists in the list, the fast runner will eventually move behind the sl
 
 With recursion, we solve a problem by first solving smaller instances of the same problem. In practice, this often involves calling a function from within itself—in other words, we feed some input into the function, and the function produces some output—which we then feed back into the same function. And we continue to do this until we arrive at the solution.
 
+#### Practice Problem
+
+Implement sum_integers(n) to calculate the sum of all integers from  1  to  𝑛  using recursion. For example, sum_integers(3) should return  6  ( 1+2+3 ).
+
+    def sum_integers(n):
+        if n == 1:
+            return 1
+        return n + sum_integers(n - 1)
+
+    print(sum_integers(3))
+
+
+    def factorial(n):
+        """
+        Calculate n!
+
+        Args:
+        n(int): factorial to be computed
+        Returns:
+        n!
+        """
+
+        if n == 0:
+            return 1  # by definition of 0!
+        return n * factorial(n-1)
+
+    print ("Pass" if (1 == factorial(0)) else "Fail")
+    print ("Pass" if  (1 == factorial(1)) else "Fail")
+    print ("Pass" if  (120 == factorial(5)) else "Fail")
+
+def is_palindrome(input):
+    """
+    Return True if input is palindrome, False otherwise.
+
+    Args:
+       input(str): input to be checked if it is palindrome
+    """
+    
+    # Termination / Base condition
+    if len(input) <= 1:
+        return True
+    else:
+        first_char = input[0]
+        last_char = input[-1]
+
+        # sub_input is input with first and last char removed
+        sub_input = input[1:-1]
+
+        # recursive call, if first and last char are identical, else return False
+        return (first_char == last_char) and is_palindrome(sub_input)
+
+print ("Pass" if  (is_palindrome("")) else "Fail")
+print ("Pass" if  (is_palindrome("a")) else "Fail")
+print ("Pass" if  (is_palindrome("madam")) else "Fail")
+print ("Pass" if  (is_palindrome("abba")) else "Fail")
+print ("Pass" if not (is_palindrome("Udacity")) else "Fail")
 
 # Algorithms
 
