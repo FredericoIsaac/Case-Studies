@@ -780,15 +780,26 @@ If a loop exists in the list, the fast runner will eventually move behind the sl
 
 ## Recursion
 
+[Video explaination](https://www.youtube.com/watch?v=AfBqVVKg4GE)
+
 With recursion, we solve a problem by first solving smaller instances of the same problem. In practice, this often involves calling a function from within itself—in other words, we feed some input into the function, and the function produces some output—which we then feed back into the same function. And we continue to do this until we arrive at the solution.
+
+So when should we use recursion (when both of this conditions happen)?
+
+* When the problem has a tree-like structure
+* When the problem requires backtracking
+
 
 #### Practice Problem
 
 Implement sum_integers(n) to calculate the sum of all integers from  1  to  𝑛  using recursion. For example, sum_integers(3) should return  6  ( 1+2+3 ).
 
     def sum_integers(n):
+        # Its called base case
         if n == 1:
             return 1
+
+        # Its called recursive case
         return n + sum_integers(n - 1)
 
     print(sum_integers(3))
@@ -838,6 +849,26 @@ print ("Pass" if  (is_palindrome("a")) else "Fail")
 print ("Pass" if  (is_palindrome("madam")) else "Fail")
 print ("Pass" if  (is_palindrome("abba")) else "Fail")
 print ("Pass" if not (is_palindrome("Udacity")) else "Fail")
+
+## Trees
+
+* The first element is called root
+* It works like a linked list, but instead of pointing to one node, it can point to more
+* A node can have only one parent, but it can have any number of children.
+
+## Maps and Hashing
+
+* Maps == Dictionarys
+
+### Set
+
+* No order
+* No repeat values
+
+        Map = <key, value>
+
+A group of keys is a set.
+
 
 # Algorithms
 
