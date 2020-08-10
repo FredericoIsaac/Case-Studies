@@ -1,4 +1,8 @@
 class Stack:
+    """ 
+    Create a stack Object that assumes that the end of the list
+    will hold the top element of the stack.
+    """
     def __init__(self):
         self.items = []
     
@@ -6,13 +10,24 @@ class Stack:
         return len(self.items)
     
     def push(self, item):
+        # Order O(1)
         self.items.append(item)
 
     def pop(self):
+        # Order O(1)
         if self.size()==0:
             return None
         else:
             return self.items.pop()
+    
+    def isEmpty(self):
+        return self.items == []
+
+    def peek(self):
+        return self.items[len(self.items) - 1]
+
+
+
 
 def equation_checker(equation):
     """
@@ -22,8 +37,7 @@ def equation_checker(equation):
        equation(string): String form of equation
     Returns:
        bool: Return if parentheses are balanced or not
-    """
-    
+    """    
     stack = Stack()
 
     for char in equation:
@@ -32,15 +46,17 @@ def equation_checker(equation):
         elif char == ")":
             if stack.pop() == None:
                 return False
+            else:
+                stack.pop()
 
     if stack.size() == 0:
         return True
     else:
         return False
 
-
 print ("Pass" if (equation_checker('((3^2 + 8)*(5/2))/(2+6)')) else "Fail")
 print ("Pass" if not (equation_checker('((3^2 + 8)*(5/2))/(2+6))')) else "Fail")
+
 
 def evaluate_post_fix(input_list):
     """
@@ -91,6 +107,9 @@ test_case_1 = [["3", "1", "+", "4", "*"], 16]
 test_function(test_case_1)
 
 def reverse_stack(stack):
+    """
+    Reverse a stack, as an exercice it can be to reverse a string
+    """
     holder_stack = Stack()
     while not stack.is_empty():
         popped_element = stack.pop()
