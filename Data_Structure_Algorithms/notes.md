@@ -328,6 +328,47 @@ Example 2
 
 So in this example we have two integers (n and counter) and an expanding list, and therefore our space complexity will be 4*n + 8 since we have an expanding integer list and two integer data types. This is an example of linear space complexity.
 
+[https://courses.cs.northwestern.edu/311/html/space-complexity.html]
+
+        int sum(int x, int y, int z) {
+        int r = x + y + z;
+        return r;
+        }
+
+requires 3 units of space for the parameters and 1 for the local variable, and this never changes, so this is O(1).
+
+    int sum(int a[], int n) {
+    int r = 0;
+    for (int i = 0; i < n; ++i) {
+        r += a[i];
+    }
+    return r;
+    }
+
+requires N units for a, plus space for n, r and i, so it's O(N). What are the space complexities of these next two functions?
+
+    void matrixAdd(int a[], int b[], int c[], int n) {
+    for (int i = 0; i < n; ++i) {
+        c[i] = a[i] + b[j]
+    }
+    }
+    void matrixMultiply(int a[], int b[], int c[][], int n) { // not legal C++
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+        c[i] = a[i] + b[j];
+        }
+    }
+    }
+
+If a function A uses M units of its own space (local variables and parameters), and it calls a function B that needs N units of local space, then A overall needs M + N units of temporary workspace. What if A calls B 3 times? When a function finishes, its space can be reused, so if A calls B 3 times, it still only needs M + N units of workspace.
+
+What if A calls itself recursively N times? Then its space can't be reused because every call is still in progress, so it needs O(N2) units of workspace.
+
+But be careful here. If things are passed by pointer or reference, then space is shared. If A passes a C-style array to B, there is no new space allocated. If A passes a C++ object by reference to B, there is no new space. What if A passes a vector or string by value? Most likely, new space will be allocated. Some C++ compilers try to avoid this for strings, using a technique called copy-on-write, but this is no longer a common thing to do.
+
+Explanation of how to calculate space complexity [here](http://exploreshaifali.github.io/2014/02/13/Space-Complexity/).
+
+
 # Data Structures
 
 ## Array and Linked Lists
@@ -778,6 +819,12 @@ The stack operations are given below.
 
 ## Queues
 
+[https://runestone.academy/runestone/books/published/pythonds/BasicDS/WhatIsaQueue.html]
+
+Computer science also has common examples of queues. Our computer laboratory has 30 computers networked with a single printer. When students want to print, their print tasks “get in line” with all the other printing tasks that are waiting. The first task in is the next to be completed. If you are last in line, you must wait for all the other tasks to print ahead of you
+
+As an ordered collection of items which are added at one end, called the “rear,” and removed from the other end, called the “front.”
+
 * FIFO - First In, First Out
 * Head - the first element of the queue (the oldest)
 * Tail - the last element of the queue (the youngest)
@@ -787,6 +834,24 @@ The stack operations are given below.
 * Deques or Double ended queue - is a queue that goes both ways (head and tail)
 * Priority Queue - each element has a priority number, when dequeue remove the element with the highest priority number
 * Complexity of a linked list queue is **O(1)** (enqueue and dequeue)
+
+* Queue() creates a new queue that is empty. It needs no parameters and returns an empty queue.
+* enqueue(item) adds a new item to the rear of the queue. It needs the item and returns nothing.
+* dequeue() removes the front item from the queue. It needs no parameters and returns the item. The queue is modified.
+* isEmpty() tests to see whether the queue is empty. It needs no parameters and returns a boolean value.
+* size() returns the number of items in the queue. It needs no parameters and returns an integer.
+
+A deque, also known as a double-ended queue, is an ordered collection of items similar to the queue. It has two ends, a front and a rear, and the items remain positioned in the collection. What makes a deque different is the unrestrictive nature of adding and removing items. New items can be added at either the front or the rear. Likewise, existing items can be removed from either end. In a sense, this hybrid linear structure provides all the capabilities of stacks and queues in a single data structure.
+
+* Deque() creates a new deque that is empty. It needs no parameters and returns an empty deque.
+* addFront(item) adds a new item to the front of the deque. It needs the item and returns nothing.
+* addRear(item) adds a new item to the rear of the deque. It needs the item and returns nothing.
+* removeFront() removes the front item from the deque. It needs no parameters and returns the item. The deque is modified.
+* removeRear() removes the rear item from the deque. It needs no parameters and returns the item. The deque is modified.
+* isEmpty() tests to see whether the deque is empty. It needs no parameters and returns a boolean value.
+* size() returns the number of items in the deque. It needs no parameters and returns an integer.
+
+Adding and removing items from the front is O(1) whereas adding and removing from the rear is O(n).
 
 ## Recursion
 
@@ -798,6 +863,13 @@ So when should we use recursion (when both of this conditions happen)?
 
 * When the problem has a tree-like structure
 * When the problem requires backtracking
+
+https://runestone.academy/runestone/books/published/pythonds/Recursion/WhatIsRecursion.html
+
+* All recursive algorithms must obey three important laws:
+    * A recursive algorithm must have a base case.
+    * A recursive algorithm must change its state and move toward the base case.
+    * A recursive algorithm must call itself, recursively.
 
 
 #### Practice Problem
