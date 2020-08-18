@@ -934,9 +934,14 @@ print ("Pass" if not (is_palindrome("Udacity")) else "Fail")
 
 ## Trees
 
+A tree has the following properties:
+
+* One node of the tree is designated as the root node.
+* Every node n, except the root node, is connected by an edge from exactly one other node p, where p is the parent of n.
+* A unique path traverses from the root to each node.
+* If each node in the tree has a maximum of two children, we say that the tree is a binary tree.
 * The first element is called root
 * It works like a linked list, but instead of pointing to one node, it can point to more
-* A node can have only one parent, but it can have any number of children.
 
 ## Maps and Hashing
 
