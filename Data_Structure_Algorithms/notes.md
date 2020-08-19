@@ -943,6 +943,79 @@ A tree has the following properties:
 * The first element is called root
 * It works like a linked list, but instead of pointing to one node, it can point to more
 
+Tree Traversal: Process of visiting (checking and/or updating) each node in a tree data structure, exactly once.
+
+There are three common ways to traverse them in depth-first order: in-order, pre-order and post-order.
+
+##### Pre-order Traversal
+
+* Check if the current node is empty / null.
+* Display the data part of the root (or current node).
+* Traverse the left subtree by recursively calling the pre-order function.
+* Traverse the right subtree by recursively calling the pre-order function.
+
+![DPF tree](/Data_Structure_Algorithms\images\dfs_search_tree.png)
+
+Pre-order: F, B, A, D, C, E, G, I, H.
+
+##### In-Order Traversal
+
+* Check if the current node is empty / null.
+* Traverse the left subtree by recursively calling the in-order function.
+* Display the data part of the root (or current node).
+* Traverse the right subtree by recursively calling the in-order function.
+
+First we go down as we can to the left and then we start display data of the current node, then by recursion do it again
+
+In-order: A, B, C, D, E, F, G, H, I.
+
+##### Post-Order Traversal
+
+* Check if the current node is empty / null.
+* Traverse the left subtree by recursively calling the post-order function.
+* Traverse the right subtree by recursively calling the post-order function.
+* Display the data part of the root (or current node).
+
+Display All left's, when no more left print right until more lefts
+
+Post-order: A, C, E, D, B, H, I, G, F.
+
+##### Level-Order Traversal
+
+![level_order_tree](/Data_Structure_Algorithms\images\level_order_traversal_tree.png)
+
+##### Reverse Level-Order Traversal
+
+![reverse_level_order_tree](/Data_Structure_Algorithms\images\reverse_level_order_traversal_tree.png)
+
+##### Height of Binary Tree
+
+* The height of a tree is the height of its root node.
+
+* Height of Node:
+    * The height of a node is the number of edges on the longest path between that node and a leaf.
+
+![binary_tree_height](/Data_Structure_Algorithms\images\height_binary_tree.png)
+
+##### Size of Binary Tree
+
+The total number of nodes in the tree
+
+##### Binary Search Tree
+
+Binary search trees differ from binary trees in that the entries are ordered.
+
+![time complexity](/Data_Structure_Algorithms\images\time_complexety_binary_search_tree.png)
+
+###### BST Property
+
+The BST property—every node on the right subtree has to be larger than the current node and every node on the left subtree has to be smaller than the current node
+
+The binary search tree property (BST property) is a global property that every binary search tree must satisfy.
+
+![example property](/Data_Structure_Algorithms\images\bts_proporty.png)
+
+
 ## Maps and Hashing
 
 * Maps == Dictionarys
