@@ -236,3 +236,95 @@ print(tree.size())
 # 7
 print(tree.size_(tree.root))
 # 7
+
+from queue import Queue
+
+def convert_arr_to_binary_tree(arr):
+    """
+    Takes arr representing level-order traversal of Binary Tree 
+    """
+    index = 0
+    length = len(arr)
+    
+    if length <= 0 or arr[0] == -1:
+        return None
+
+    root = BinaryTree(arr[index])
+    index += 1
+    queue = Queue()
+    queue.put(root)
+    
+    while not queue.empty():
+        current_node = queue.get()
+        left_child = arr[index]
+        index += 1
+        
+        if left_child is not None:
+            left_node = BinaryTree(left_child)
+            current_node.left = left_node
+            queue.put(left_node)
+        
+        right_child = arr[index]
+        index += 1
+        
+        if right_child is not None:
+            right_node = BinaryTree(right_child)
+            current_node.right = right_node
+            queue.put(right_node)
+    return root
+
+def diameter_of_binary_tree(root):
+    return diameter_of_binary_tree_func(root)[1]
+    
+def diameter_of_binary_tree_func(root):
+    """
+    Diameter for a particular BinaryTree Node will be:
+        1. Either diameter of left subtree
+        2. Or diameter of a right subtree
+        3. Sum of left-height and right-height
+    :param root:
+    :return: [height, diameter]
+    """
+    if root is None:
+        return 0, 0
+
+    left_height, left_diameter = diameter_of_binary_tree_func(root.left)
+    right_height, right_diameter = diameter_of_binary_tree_func(root.right)
+
+    current_height = max(left_height, right_height) + 1
+    height_diameter = left_height + right_height
+    current_diameter = max(left_diameter, right_diameter, height_diameter)
+
+    return current_height, current_diameter
+
+
+def path_from_root_to_node(root, data):
+    """
+    Assuming data as input to find the node
+    The solution can be easily changed to find a node instead of data
+    :param data:
+    :return:
+    Given the root of a Binary Tree and a data value representing a node,
+    return the path from the root to that node in the form of a list.
+    You can assume that the binary tree has nodes with unique values.
+    """
+    output = path_from_node_to_root(root, data)
+    return list(reversed(output))
+
+def path_from_node_to_root(root, data):
+    if root is None:
+        return None
+
+    elif root.data == data:
+        return [data]
+
+    left_answer = path_from_node_to_root(root.left, data)
+    if left_answer is not None:
+        left_answer.append(root.data)
+        return left_answer
+
+    right_answer = path_from_node_to_root(root.right, data)
+    if right_answer is not None:
+        right_answer.append(root.data)
+        return right_answer
+    return None

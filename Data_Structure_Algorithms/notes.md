@@ -980,11 +980,11 @@ Display All left's, when no more left print right until more lefts
 
 Post-order: A, C, E, D, B, H, I, G, F.
 
-##### Level-Order Traversal
+##### BFS - Breadth First Search (Level-Order Traversal)
 
 ![level_order_tree](/Data_Structure_Algorithms\images\level_order_traversal_tree.png)
 
-##### Reverse Level-Order Traversal
+##### BFS - Reverse Level-Order Traversal
 
 ![reverse_level_order_tree](/Data_Structure_Algorithms\images\reverse_level_order_traversal_tree.png)
 
@@ -1015,6 +1015,9 @@ The binary search tree property (BST property) is a global property that every b
 
 ![example property](/Data_Structure_Algorithms\images\bts_proporty.png)
 
+###### Diameter of a Binary Tree
+
+Diameter of a Binary Tree is the maximum distance between any two nodes
 
 ## Maps and Hashing
 

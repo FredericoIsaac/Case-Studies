@@ -76,6 +76,8 @@ class BST:
             else:
                 return False
 
+
+
 bst = BST()
 
 bst.insert(8)
