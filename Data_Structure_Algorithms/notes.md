@@ -1048,6 +1048,8 @@ Simply put, hash functions are these really incredible magic functions which can
         hash_code_1 = hash_function("abcd")
         print(hash_code_1)
 
+While doing the get() operation, if the entry is found in the cache, it is known as a cache hit. If, however, the entry is not found, it is known as a cache miss.
+
 When two different inputs produce the same output, then we have something called a collision. An ideal hash function must be immune from producing collisions.
 
 Similarly, we can treat abcde in base p as
@@ -1108,6 +1110,53 @@ Therefore, when you are asked to solve any practice problem involving HashMaps, 
 ###### What is Caching?
 
 Caching can be defined as the process of storing data into a temporary data storage to avoid recomputation or to avoid reading the data from a relatively slower part of memory again and again. Thus cachig serves as a fast "look-up" storage allowing programs to execute faster.
+
+### Huffman Coding
+
+A data compression algorithm could be either lossy or lossless, meaning that when compressing the data, there is a loss (lossy) or no loss (lossless) of information. **The Huffman Coding** is a lossless data compression algorithm.
+
+* Assume that we have a string message AAAAAAABBBCCCCCCCDDEEEEEE comprising of 25 characters to be encoded.
+
+###### Phase I - Build the Huffman Tree
+
+* First, determine the frequency of each character in the message. In our example, the following table presents the frequency of each character.
+
+|(Unique) Character	| Frequency |
+|----|----|
+| A | 7 |
+| B | 3 |
+| C | 7 |
+| D	| 2 |
+| E | 6 |
+
+* Second, each row in the table above can be represented as a node having a character, frequency, left child, and right child. In the next step, we will repeatedly require to pop-out the node having the lowest frequency. Therefore, build and sort a list of nodes in the order lowest to highest frequencies. Remember that a list preserves the order of elements in which they are appended.
+* Pop-out two nodes with the minimum frequency from the priority queue created in the above step.
+* Create a new node with a frequency equal to the sum of the two nodes picked in the above step. This new node would become an internal node in the Huffman tree, and the two nodes would become the children. The lower frequency node becomes a left child, and the higher frequency node becomes the right child. Reinsert the newly created node back into the priority queue.
+* Do you think that this reinsertion requires the sorting of priority queue again? If yes, then a min-heap could be a better choice due to the lower complexity of sorting the elements, every time there is an insertion.
+* Repeat steps #3 and #4 until there is a single element left in the priority queue. The snapshots below present the building of a Huffman tree.
+
+![huffman_tree_1](/Data_Structure_Algorithms\images\huffman_tree_1.png)
+![huffman_tree_2](/Data_Structure_Algorithms\images\huffman_tree_2.png)
+* For each node, in the Huffman tree, assign a bit 0 for left child and a 1 for right child. See the final Huffman tree for our example:
+![huffman_tree_3](/Data_Structure_Algorithms\images\huffman_tree_3.png)
+
+
+###### Phase II - Generate the Encoded Data
+
+* Based on the Huffman tree, generate unique binary code for each character of our string message. For this purpose, you'd have to traverse the path from root to the leaf node.
+
+|(Unique) Character | Frequency	| Huffman Code |
+|----|----|----|
+| D	| 2 | 000 |
+| B	| 3 | 001 |
+| E | 6 | 01 |
+| A	| 7 | 10 |
+| C	| 7	| 11 |
+
+This way, AAAAAAABBBCCCCCCCDDEEEEEE, our encoded data would be 1010101010101000100100111111111111111000000010101010101
+
+Source: [Visualization of huffman codding](https://people.ok.ubc.ca/ylucet/DS/Huffman.html)
+
 
 # Algorithms
 
