@@ -232,8 +232,9 @@ class linked_list:
         return node.value
 
     def reverse(self):
-        """ Reverse a Linked List  A -> B -> C to A <- B <- C
-        INCOMPLETE! APPEARS NONE IN THE FINAL AND SHOULD APPEAR THE LAST ELEMENT """
+        """
+        Reverse a Linked List  A -> B -> C to A <- B <- C
+        """
         # Create a variable that indicates the current node
         trav = self.head
         # Create variabel that hold te last node
