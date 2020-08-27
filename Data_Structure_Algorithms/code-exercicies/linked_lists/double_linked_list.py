@@ -197,9 +197,10 @@ class DoublyLinkedList:
         trav = self.head
         # While not in the head of the linked list, print
         while trav:
-            print(trav.data)
+            print(trav.data, end="-")
             # Pass to the next node
             trav = trav.next
+        print()
 
 dllist = DoublyLinkedList()
 dllist.prepend(0)
@@ -214,8 +215,10 @@ dllist.prepend(5)
 dllist.add_after_node(1, 11)
 dllist.add_after_node(2, 12)
 
+
 dllist.add_before_node(1, 11)
 dllist.add_before_node(2, 12)
+dllist.print_list()
 
 dllist.delete(5)
 dllist.delete(11)
@@ -224,6 +227,8 @@ dllist.delete(6)
 dllist.delete(4)
 dllist.delete(12)
 
+print()
+dllist.print_list()
 dllist.reverse()
 
 dllist.print_list()
