@@ -43,7 +43,7 @@ class Queue:
         self.head = self.head.next
         # Update number of elements
         self.num_elements -= 1
-        # Return value that eliminate
+        # Return value that eliminate   
         return value
 
     def size(self):

@@ -3,7 +3,7 @@ class Node:
     def __init__(self, value):
         self.data = value
         self.next = None
-
+    
 class Stack:
     def __init__(self):
         self.head = None # No items in the stack, so head should be None
@@ -27,7 +27,7 @@ class Stack:
 
         # Update number of elements on the stack
         self.num_elements += 1
-
+        
     def size(self):
         """ Give the size of the stack """
         return self.num_elements
