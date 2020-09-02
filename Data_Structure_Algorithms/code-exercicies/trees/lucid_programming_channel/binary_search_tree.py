@@ -57,6 +57,9 @@ class BST:
             self._inorder_print_tree(cur_node.right)
 
     def is_bst_satisfied(self):
+        """
+        DONT CHECK 100% THE PROPERTY
+        """
         if self.root:
             is_satisfied = self._is_bst_satisfied(self.root, self.root.data)
 
@@ -91,9 +94,14 @@ print(bst.find(4))
 # True
 
 tree = BST()
-tree.root = Node(1)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
+tree.root = Node(12)
+tree.root.left = Node(3)
+tree.root.left.left = Node(1)
+tree.root.left.right = Node(13)
+
+tree.root.right = Node(14)
+tree.root.right.left = Node(11)
+tree.root.right.right = Node(15)
 
 print(bst.inorder_print_tree())
 # 1
@@ -103,11 +111,15 @@ print(bst.inorder_print_tree())
 # 9
 # 10
 # None
-
+print("Inorder Tree:")
 print(tree.inorder_print_tree())
-# 2
 # 1
 # 3
+# 13
+# 12
+# 11
+# 14
+# 15
 # None
 
 print(bst.is_bst_satisfied())
